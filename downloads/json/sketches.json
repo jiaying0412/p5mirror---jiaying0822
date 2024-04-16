@@ -1610,7 +1610,7 @@
   {
     "name": "ims01-Jiaz",
     "_id": "jYTEhmWCm",
-    "updatedAt": "2024-03-26T13:17:01.867Z",
+    "updatedAt": "2024-03-26T14:07:48.213Z",
     "files": [
       {
         "name": "root",
@@ -1623,8 +1623,8 @@
         ],
         "fileType": "folder",
         "_id": "65f0774616b2e4c1f98664a2",
-        "createdAt": "2024-03-26T13:17:01.867Z",
-        "updatedAt": "2024-03-26T13:17:01.867Z",
+        "createdAt": "2024-03-26T14:07:48.213Z",
+        "updatedAt": "2024-03-26T14:07:48.213Z",
         "isSelectedFile": false,
         "id": "65f0774616b2e4c1f98664a2"
       },
@@ -1634,9 +1634,9 @@
         "children": [],
         "fileType": "file",
         "_id": "65f0774616b2e4c1f986649f",
-        "isSelectedFile": false,
-        "createdAt": "2024-03-26T13:17:01.867Z",
-        "updatedAt": "2024-03-26T13:17:01.867Z",
+        "isSelectedFile": true,
+        "createdAt": "2024-03-26T14:07:48.213Z",
+        "updatedAt": "2024-03-26T14:07:48.213Z",
         "id": "65f0774616b2e4c1f986649f"
       },
       {
@@ -1645,8 +1645,8 @@
         "children": [],
         "fileType": "file",
         "_id": "65f0774616b2e4c1f98664a0",
-        "createdAt": "2024-03-26T13:17:01.867Z",
-        "updatedAt": "2024-03-26T13:17:01.867Z",
+        "createdAt": "2024-03-26T14:07:48.213Z",
+        "updatedAt": "2024-03-26T14:07:48.213Z",
         "isSelectedFile": false,
         "id": "65f0774616b2e4c1f98664a0"
       },
@@ -1656,8 +1656,8 @@
         "children": [],
         "fileType": "file",
         "_id": "65f0774616b2e4c1f98664a1",
-        "createdAt": "2024-03-26T13:17:01.867Z",
-        "updatedAt": "2024-03-26T13:17:01.867Z",
+        "createdAt": "2024-03-26T14:07:48.213Z",
+        "updatedAt": "2024-03-26T14:07:48.213Z",
         "isSelectedFile": false,
         "id": "65f0774616b2e4c1f98664a1"
       },
@@ -1667,14 +1667,226 @@
         "children": [],
         "fileType": "file",
         "_id": "66029cdc9b9b93001c41d7c6",
-        "updatedAt": "2024-03-26T13:17:01.867Z",
-        "createdAt": "2024-03-26T13:17:01.867Z",
-        "isSelectedFile": true,
+        "updatedAt": "2024-03-26T14:07:48.213Z",
+        "createdAt": "2024-03-26T14:07:48.213Z",
+        "isSelectedFile": false,
         "id": "66029cdc9b9b93001c41d7c6"
       }
     ],
     "createdAt": "2024-03-12T15:39:48.318Z",
     "id": "jYTEhmWCm"
+  },
+  {
+    "name": "ims02-Jiaz",
+    "_id": "HVA8tqvW2",
+    "updatedAt": "2024-04-09T13:14:16.927Z",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "660bee3ae31672001a5cbecb",
+          "660bee4cce7a64001ae9371c",
+          "660bee4ce31672001a5cc048",
+          "660bee4cc6d43d001aebae44",
+          "660bee4cce7a64001ae9371f",
+          "660bee63c6d43d001aebafa1",
+          "660bee4cce7a64001ae93724",
+          "660bed5c25b761aa580f27ec",
+          "660bed5c25b761aa580f27ee"
+        ],
+        "fileType": "folder",
+        "_id": "660bed5c25b761aa580f27ef",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bed5c25b761aa580f27ef"
+      },
+      {
+        "name": "sketch.js.js",
+        "content": "//https://editor.p5js.org/jiaying0822/sketches/HVA8tqvW2\n//ims02-Jiaz\n\n//Attribution: “Zen Pots” by newyellowhttp://openprocessing.org/sketch/2036000License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n\n//Link to sketch in OpenProcessing: <iframe src=\"https://openprocessing.org/sketch/2036000/embed/\" width=\"400\" height=\"400\"></iframe>\n\nlet _backLayer;\nlet _midLayer;\nlet _frontLayer;\n\nlet _colorSet;\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n\tdescribe('This work randomly assembles different easing curves to create a pot shape and then uses stroke dots for an overall aesthetic style.');\n\t\n  _backLayer = createGraphics(width, height);\n  _midLayer = createGraphics(width, height);\n  _frontLayer = createGraphics(width, height);\n  \n  _backLayer.colorMode(HSB);\n  _midLayer.colorMode(HSB);\n  _frontLayer.colorMode(HSB);\n  colorMode(HSB);\n\n  // get color\n  _colorSet = GetColorSet();\n  _backLayer.background(_colorSet.bgColor.h, _colorSet.bgColor.s, _colorSet.bgColor.b);\n\n  let padding = 0.15 * min(width, height);\n\n  // bg part\n  let baseHeight = padding + 0.85 * (height - 2 * padding);\n\n  let bgHeight = 0.06 * height;\n  let xCount = width * random(0.6, 1.2);\n\n  for (let x = 0; x < xCount; x++) {\n    let yDotCount = bgHeight * dotDensity * 0.6;\n\n    for (let y = 0; y < yDotCount; y++) {\n      let t = tan(random(TWO_PI));\n\n      let nowX = x * (width / (xCount - 1));\n      let nowY = baseHeight - bgHeight * t - 0.2 * height;\n\n      // _backLayer.noStroke();\n      _backLayer.noFill();\n      _backLayer.stroke(_colorSet.bgDotColor.h, _colorSet.bgDotColor.s, _colorSet.bgDotColor.b);\n      _backLayer.circle(nowX, nowY, random(0, 2));\n    }\n  }\n  UpdateLayers();\n\n\n  let potCount = int(random(6, 18));\n  // let potCount = 17;\n  let potWidth = (width - padding * 2) / potCount;\n\n  for (let i = 0; i < potCount; i++) {\n    let potX = padding + (i + 0.5) * potWidth;\n    let potY = baseHeight;\n\n    let potHeight = random(0.4, 2.0) * potWidth;\n    let newPot = new PotData(potX, potY, potWidth / 2, potHeight);\n\n    await drawPot(newPot);\n    await sleep(2000); //added line, slow down drawings between pots - Jiaz\n  }\n  UpdateLayers();\n  await sleep(1000); //added line, slower - Jiaz\n}\n\nfunction UpdateLayers () {\n  background(0, 0, 100);\n  image(_backLayer, 0, 0);\n  image(_midLayer, 0, 0);\n  image(_frontLayer, 0, 0);\n}\n// async sleep\nfunction sleep(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms))\n}",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bed5c25b761aa580f27ec",
+        "isSelectedFile": false,
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "id": "660bed5c25b761aa580f27ec"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bed5c25b761aa580f27ee",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bed5c25b761aa580f27ee"
+      },
+      {
+        "name": "colorSettings.js.js",
+        "content": "let colorSets = [];\n\nfunction GetColorSet() {\n    let blueSet = {\n        bgColor: new NYColor(0, 0, 92),\n        bgDotColor: new NYColor(200, 20, 80),\n        stickColor: new NYColor(0, 0, 20),\n        potStrokeColorA: new NYColor(200, 30, 30),\n        potInsideColorA: new NYColor(200, 6, 80),\n        potEdgeDotColor: new NYColor(200, 6, 80),\n        flowerColor: new NYColor(0, 0, 100),\n    };\n    colorSets.push(blueSet);\n\n    let sakuraSet = {\n        bgColor: new NYColor(330, 28, 90),\n        bgDotColor: new NYColor(346, 28, 80),\n        stickColor: new NYColor(0, 0, 20),\n        potStrokeColorA: new NYColor(346, 30, 30),\n        potInsideColorA: new NYColor(342, 8, 90),\n        potEdgeDotColor: new NYColor(350, 30, 90),\n        flowerColor: new NYColor(0, 0, 100),\n    };\n    colorSets.push(sakuraSet);\n\n    let greenSet = {\n        bgColor: new NYColor(0, 0, 90),\n        bgDotColor: new NYColor(0, 0, 80),\n        stickColor: new NYColor(0, 0, 20),\n        potStrokeColorA: new NYColor(174, 42, 40),\n        potInsideColorA: new NYColor(95, 40, 100),\n        potEdgeDotColor: new NYColor(95, 10, 95),\n        flowerColor: new NYColor(40, 100, 100),\n    };\n    colorSets.push(greenSet);\n\n    let devilSet = {\n        bgColor: new NYColor(0, 20, 12),\n        bgDotColor: new NYColor(0, 0, 24),\n        stickColor: new NYColor(0, 0, 100),\n        potStrokeColorA: new NYColor(342, 100, 60),\n        potInsideColorA: new NYColor(320, 40, 80),\n        potEdgeDotColor: new NYColor(340, 40, 20),\n        flowerColor: new NYColor(60, 80, 100),\n    };\n    colorSets.push(devilSet);\n\n    let zenSet = {\n        bgColor: new NYColor(0, 0, 80),\n        bgDotColor: new NYColor(0, 0, 90),\n        stickColor: new NYColor(0, 0, 40),\n        potStrokeColorA: new NYColor(0, 0, 50),\n        potInsideColorA: new NYColor(0, 0, 80),\n        potEdgeDotColor: new NYColor(0, 0, 60),\n        flowerColor: new NYColor(350, 40, 100),\n    };\n    colorSets.push(zenSet);\n\n\n    return colorSets[int(random(0, colorSets.length))];\n}",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee3ae31672001a5cbecb",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bee3ae31672001a5cbecb"
+      },
+      {
+        "name": "divider.js.js",
+        "content": "\nfunction getStick(_x, _y, _dir, _length, _maxNodeDepth) {\n    let fromX = _x;\n    let fromY = _y;\n\n    let toX = fromX + _length * sin(radians(_dir));\n    let toY = fromY + _length * -cos(radians(_dir));\n\n    let nodes = [];\n    nodes.push({\n        'x1': fromX,\n        'y1': fromY,\n        'x2': toX,\n        'y2': toY,\n        'dir': _dir,\n        'length': _length,\n        'nodeDepth': _maxNodeDepth\n    });\n\n    let splitNode = random() < 0.5;\n\n    if (_maxNodeDepth > 0 && splitNode) {\n\n        let leftMin = 0.6;\n        let rightMin = 0.6;\n\n        if(random() < 0.5)\n            leftMin = 0.1;\n        else\n            rightMin = 0.1;\n\n        let leftNodes = getStick(toX, toY, _dir + random(-20, -6), _length * random(leftMin, 0.95), _maxNodeDepth - 1);\n        let rightNodes = getStick(toX, toY, _dir + random(6, 20), _length * random(rightMin, 0.95), _maxNodeDepth - 1);\n\n        for(let i=0; i< leftNodes.length; i++) \n            nodes.push(leftNodes[i]);\n        \n        for(let i=0; i< rightNodes.length; i++)\n            nodes.push(rightNodes[i]);\n    }\n    else if(_maxNodeDepth > 0)\n    {\n        let newNodes = getStick(toX, toY, _dir + random(-20, 20), _length * random(0.6, 0.95), _maxNodeDepth - 1);\n\n        for(let i=0; i< newNodes.length; i++)\n            nodes.push(newNodes[i]);\n    }\n\n    return nodes;\n}",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee4cce7a64001ae9371c",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bee4cce7a64001ae9371c"
+      },
+      {
+        "name": "drawer.js.js",
+        "content": "// https://editor.p5js.org/jiaying0822/sketches/HVA8tqvW2\n// ims02-Jiaz\n\n//Attribution: “Zen Pots” by newyellowhttp://openprocessing.org/sketch/2036000License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n\n//<iframe src=\"https://openprocessing.org/sketch/2036000/embed/\" width=\"400\" height=\"400\"></iframe>\n\nlet lineDensity = 0.8;\nlet dotDensity = 0.8;\nlet stickDotDensity = 0.8;\n\nasync function drawPot(_potData) {\n\n    let startX = _potData.x;\n    let startY = _potData.y;\n\n    let edgePoints = _potData.edgePoints;\n\n    // pick the curves first\n    let edgeCurves = [];\n    let isOutCurve = random() < 0.5;\n\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        if (isOutCurve)\n            edgeCurves.push(curvesOut[int(random(curvesOut.length))]);\n        else\n            edgeCurves.push(curvesIn[int(random(curvesIn.length))]);\n\n        isOutCurve = !isOutCurve;\n    }\n\n    // draw pot body\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        let nowPoint = edgePoints[i];\n        let nextPoint = edgePoints[(i + 1)];\n\n        let fromX = _potData.x;\n        let fromY = _potData.y - nowPoint.y;\n        let fromDist = nowPoint.x;\n\n        let toX = _potData.x;\n        let toY = _potData.y - nextPoint.y;\n        let toDist = nextPoint.x;\n\n        let currentCurve = edgeCurves[i];\n        await drawEdgeSegment(fromX, fromY, fromDist, toX, toY, toDist, currentCurve);\n    }\n\n    // draw edge dots\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        let nowPoint = edgePoints[i];\n        let nextPoint = edgePoints[(i + 1)];\n\n        let fromX = _potData.x;\n        let fromY = _potData.y - nowPoint.y;\n        let fromDist = nowPoint.x;\n\n        let toX = _potData.x;\n        let toY = _potData.y - nextPoint.y;\n        let toDist = nextPoint.x;\n\n        let currentCurve = edgeCurves[i];\n        await drawSegmentDots(fromX, fromY, fromDist, toX, toY, toDist, currentCurve);\n    }\n\n    // draw stick\n    let baseAngleT = random(0.6, 0.8);\n    let endAngleT = random(0.2, 0.4);\n\n    if (random() < 0.5) {\n        baseAngleT = random(0.2, 0.4);\n        endAngleT = random(0.6, 0.8);\n    }\n\n    let baseRadius = edgePoints[0].x;\n    let endRadius = edgePoints[edgePoints.length - 1].x;\n    let endYOffset = edgePoints[edgePoints.length - 1].y;\n\n    let baseX = startX + baseRadius * sin(radians(lerp(90, 270, baseAngleT)));\n    let baseY = startY + baseRadius * 0.24 * -cos(radians(lerp(90, 270, baseAngleT)));\n\n    let endX = startX + endRadius * sin(radians(lerp(90, 270, endAngleT)));\n    let endY = startY - endYOffset + endRadius * 0.24 * -cos(radians(lerp(90, 270, endAngleT)));\n\n    // _midLayer.stroke(0, 0, 6);\n    // _midLayer.strokeWeight(3);\n    // _midLayer.line(baseX, baseY, endX, endY);\n\n    if (random() < 0.6) {\n        let stickAngle = getAngle(baseX, baseY, endX, endY);\n        let stickX = lerp(baseX, endX, 0.9);\n        let stickY = lerp(baseY, endY, 0.9);\n        let stickLength = random(1.6, 3.0) * endYOffset;\n\n        let newStickObj = new StickObj(stickX, stickY, stickAngle, stickLength);\n        await drawStick(newStickObj);\n      await sleep (10);\n    }\n  \n}\n\nasync function drawEdgeSegment(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {\n    let lineCount = lineDensity * dist(_fromX, _fromY, _toX, _toY);\n\n    for (let i = 0; i < lineCount; i++) {\n        let t = i / lineCount; // not drawing the last line\n        let curveT = _curveFunc(t);\n\n        let centerX = lerp(_fromX, _toX, t);\n        let centerY = lerp(_fromY, _toY, t);\n\n        let nowDist = lerp(_fromDist, _toDist, curveT);\n\n        let leftX = centerX - nowDist;\n        let leftY = centerY;\n\n        let rightX = centerX + nowDist;\n        let rightY = centerY;\n\n        let nowColor = new NYColor(0, 0, 0);\n\n        // nowColor = NYLerpColor(_colorSet.potStrokeColorA, _colorSet.potStrokeColorB, t);\n        nowColor = _colorSet.potStrokeColorA;\n        drawCurveLine(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 12);\n\n        // nowColor = NYLerpColor(_colorSet.potInsideColorA, _colorSet.potInsideColorB, t);\n        nowColor = _colorSet.potInsideColorA;\n        drawCurveLine(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 3);\n        UpdateLayers();\n        await sleep(100);\n    }\n}\n\nfunction drawCurveLine(_x1, _y1, _x2, _y2, _curveHeight, _dotColor, _thickness) {\n    let centerX = (_x1 + _x2) / 2;\n    let centerY = (_y1 + _y2) / 2;\n\n    let r1 = abs(_x2 - _x1) / 2;\n    let r2 = _curveHeight;\n    let ellipseRadius = 2 * PI * sqrt((r1 * r1 + r2 * r2) / 2);\n\n    let dotCount = int(ellipseRadius * dotDensity);\n\n    let fromAngle = 0;\n    let toAngle = 360;\n\n    let targetLayer = _backLayer;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = i / (dotCount - 1);\n        let nowAngle = lerp(fromAngle, toAngle, t);\n        let briAddRatio = sin(radians(lerp(0, 180, t)));\n        let strokeWidthRatio = abs(sin(radians(nowAngle + random(-60, 60))));\n\n        let x = centerX + r1 * sin(radians(nowAngle));\n        let y = centerY + r2 * -cos(radians(nowAngle));\n\n        let dotSize = noise(centerX, centerY, nowAngle * 0.1) * _thickness + 2;\n\n        if (nowAngle > 90 && nowAngle < 270)\n            targetLayer = _frontLayer;\n        else\n            targetLayer = _backLayer;\n\n        targetLayer.noStroke();\n        // stroke(100, 20, 60);\n        // strokeWeight(1 * strokeWidthRatio);\n        targetLayer.fill(_dotColor.h, _dotColor.s, _dotColor.b + briAddRatio * 20);\n        targetLayer.circle(x, y, dotSize);\n    }\n}\n\nasync function drawSegmentDots(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {\n    let lineCount = lineDensity * dist(_fromX, _fromY, _toX, _toY);\n\n    for (let i = 0; i < lineCount; i++) {\n        let t = i / lineCount; // not drawing the last line\n        let curveT = _curveFunc(t);\n\n        let centerX = lerp(_fromX, _toX, t);\n        let centerY = lerp(_fromY, _toY, t);\n\n        let nowDist = lerp(_fromDist, _toDist, curveT);\n\n        let leftX = centerX - nowDist;\n        let leftY = centerY;\n\n        let rightX = centerX + nowDist;\n        let rightY = centerY;\n\n        let nowColor = new NYColor(100, 60, 40);\n\n        nowColor = _colorSet.potEdgeDotColor;\n        drawCurveLineDots(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 1);\n        UpdateLayers();\n        await sleep(1);\n    }\n}\n\nfunction drawCurveLineDots(_x1, _y1, _x2, _y2, _curveHeight, _dotColor, _thickness) {\n    let centerX = (_x1 + _x2) / 2;\n    let centerY = (_y1 + _y2) / 2;\n\n    let r1 = abs(_x2 - _x1) / 2;\n    let r2 = _curveHeight;\n    let ellipseRadius = 2 * PI * sqrt((r1 * r1 + r2 * r2) / 2);\n\n    let dotCount = 100;\n\n    let fromAngle = 90;\n    let toAngle = 270;\n\n    let targetLayer = _frontLayer;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = 1 - random(random(random()));\n\n        let nowAngle = lerp(fromAngle, toAngle, t);\n\n        let x = centerX + r1 * sin(radians(nowAngle));\n        let y = centerY + r2 * -cos(radians(nowAngle));\n\n        let dotSize = noise(centerX, centerY, nowAngle * 0.1) * _thickness + 1;\n\n        targetLayer.noStroke();\n        // stroke(100, 20, 60);\n        // strokeWeight(1 * strokeWidthRatio);\n        targetLayer.fill(_dotColor.h, _dotColor.s, _dotColor.b);\n        targetLayer.circle(x, y, dotSize);\n    }\n}\n\nfunction drawStick(_x, _y, _startDir, _thickness, _length) {\n    let lineCount = lineDensity * _length;;\n    let stepDistance = 1.0 / (lineDensity);\n\n    let nowX = _x;\n    let nowY = _y;\n    let nowAngle = _startDir;\n    let baseAngle = _startDir;\n\n    let noiseZ = random(-1000000, 1000000);\n\n    for (let i = 0; i < lineCount; i++) {\n        circle(nowX, nowY, 12);\n\n        strokeWeight(1);\n        stroke(0, 0, 10);\n        fill(0, 0, random(30, 60));\n\n        nowAngle = _startDir + noise(nowX * 0.06, nowY * 0.06, noiseZ) * 60 - 30;\n        nowX += sin(radians(nowAngle)) * stepDistance;\n        nowY -= cos(radians(nowAngle)) * stepDistance;\n\n    }\n\n}\n\n\nasync function drawStick(_stickObj) {\n\n    let hasFlower = random() < 0.5;\n\n    for (let i = 0; i < _stickObj.nodes.length; i++) {\n        let nodeData = _stickObj.nodes[i];\n        // _midLayer.strokeWeight(3);\n        // _midLayer.stroke(0, 0, 20);\n        // _midLayer.line(nodeData.x1, nodeData.y1, nodeData.x2, nodeData.y2);\n        _midLayer.noStroke();\n        _midLayer.fill(_colorSet.stickColor.h, _colorSet.stickColor.s, _colorSet.stickColor.b);\n\n        let nowThickness = 3;\n\n        if (nodeData.nodeDepth <= 2) {\n            nowThickness = 2;\n        }\n        drawStickBranch(nodeData.x1, nodeData.y1, nodeData.x2, nodeData.y2, nowThickness);\n\n        if (nodeData.nodeDepth <= 3 && hasFlower)\n            drawDottedFlowers(nodeData);\n\n        UpdateLayers();\n        await sleep(100);\n    }\n}\n\nfunction drawStickBranch(_x1, _y1, _x2, _y2, _thickness) {\n    let dotCount = dist(_x1, _y1, _x2, _y2) * stickDotDensity;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = i / (dotCount - 1);\n        let nowX = lerp(_x1, _x2, t);\n        let nowY = lerp(_y1, _y2, t);\n\n        let normalAngle = getAngle(_x1, _y1, _x2, _y2) + 90;\n\n        nowX += sin(radians(normalAngle)) * noise(nowX * 0.1, nowY * 0.1, 666.0) * _thickness;\n        nowY -= cos(radians(normalAngle)) * noise(nowX * 0.1, nowY * 0.1, 999.0) * _thickness;\n\n        let dotSize = noise(nowX * 0.6, nowY * 0.6) * _thickness + _thickness * 0.5;\n        _midLayer.circle(nowX, nowY, dotSize);\n    }\n}\n\nfunction drawDottedFlowers(_node) {\n    let flowerDotCount = int(random(0, 6));\n\n    for (let i = 0; i < flowerDotCount; i++) {\n        let xPos = lerp(_node.x1, _node.x2, random());\n        let yPos = lerp(_node.y1, _node.y2, random());\n\n        xPos += random() * 60 - 30;\n        yPos += random() * 60 - 30;\n\n        let dotSize = random(0.1, 6);\n\n        _midLayer.noStroke();\n        _midLayer.fill(_colorSet.flowerColor.h, _colorSet.flowerColor.s, _colorSet.flowerColor.b);\n        _midLayer.circle(xPos, yPos, dotSize);\n    }\n}",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee4ce31672001a5cc048",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": true,
+        "id": "660bee4ce31672001a5cc048"
+      },
+      {
+        "name": "easing.js.js",
+        "content": "function easeInSine(x) {\n    return 1 - Math.cos((x * Math.PI) / 2);\n}\nfunction easeOutSine(x) {\n    return Math.sin((x * Math.PI) / 2);\n}\nfunction easeInOutSine(x) {\n    return -(Math.cos(Math.PI * x) - 1) / 2;\n}\n\n\nfunction easeInQuad(x) {\n    return x * x;\n}\nfunction easeOutQuad(x) {\n    return 1 - (1 - x) * (1 - x);\n}\nfunction easeInOutQuad(x) {\n    return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;\n}\n\n\nfunction easeInCubic(x) {\n    return x * x * x;\n}\nfunction easeOutCubic(x) {\n    return 1 - Math.pow(1 - x, 3);\n}\nfunction easeInOutCubic(x) {\n    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;\n}\n\n\nfunction easeInQuart(x) {\n    return x * x * x * x;\n}\nfunction easeOutQuart(x) {\n    return 1 - Math.pow(1 - x, 4);\n}\nfunction easeInOutQuart(x) {\n    return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;\n}\n\n\nfunction easeInQuint(x) {\n    return x * x * x * x * x;\n}\nfunction easeOutQuint(x) {\n    return 1 - Math.pow(1 - x, 5);\n}\nfunction easeInOutQuint(x) {\n    return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;\n}\n\n\nfunction easeInExpo(x) {\n    return x === 0 ? 0 : Math.pow(2, 10 * x - 10);\n}\nfunction easeOutExpo(x) {\n    return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);\n}\nfunction easeInOutExpo(x) {\n    return x === 0\n        ? 0\n        : x === 1\n            ? 1\n            : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2\n                : (2 - Math.pow(2, -20 * x + 10)) / 2;\n}\n\n\nfunction easeInCirc(x) {\n    return 1 - Math.sqrt(1 - Math.pow(x, 2));\n}\nfunction easeOutCirc(x) {\n    return Math.sqrt(1 - Math.pow(x - 1, 2));\n}\nfunction easeInOutCirc(x) {\n    return x < 0.5\n        ? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2\n        : (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2;\n}\n\n\nfunction easeInBack(x) {\n    const c1 = 1.70158;\n    const c3 = c1 + 1;\n\n    return c3 * x * x * x - c1 * x * x;\n}\nfunction easeOutBack(x) {\n    const c1 = 1.70158;\n    const c3 = c1 + 1;\n\n    return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);\n}\nfunction easeInOutBack(x) {\n    const c1 = 1.70158;\n    const c2 = c1 * 1.525;\n\n    return x < 0.5\n        ? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2\n        : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;\n}\n\n\nfunction easeInBounce(x) {\n    return 1 - easeOutBounce(1 - x);\n}\nfunction easeOutBounce(x) {\n    const n1 = 7.5625;\n    const d1 = 2.75;\n\n    if (x < 1 / d1) {\n        return n1 * x * x;\n    } else if (x < 2 / d1) {\n        return n1 * (x -= 1.5 / d1) * x + 0.75;\n    } else if (x < 2.5 / d1) {\n        return n1 * (x -= 2.25 / d1) * x + 0.9375;\n    } else {\n        return n1 * (x -= 2.625 / d1) * x + 0.984375;\n    }\n}\nfunction easeInOutBounce(x) {\n    return x < 0.5\n        ? (1 - easeOutBounce(1 - 2 * x)) / 2\n        : (1 + easeOutBounce(2 * x - 1)) / 2;\n}\n\n\nfunction easeInElastic(x) {\n    const c4 = (2 * Math.PI) / 3;\n\n    return x === 0\n        ? 0\n        : x === 1\n            ? 1\n            : -Math.pow(2, 10 * x - 10) * Math.sin((x * 10 - 10.75) * c4);\n}\n\nfunction easeOutElastic(x) {\n    const c4 = (2 * Math.PI) / 3;\n\n    return x === 0\n        ? 0\n        : x === 1\n            ? 1\n            : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;\n}\n\nfunction easeInOutElastic(x) {\n    const c5 = (2 * Math.PI) / 4.5;\n\n    return x === 0\n        ? 0\n        : x === 1\n            ? 1\n            : x < 0.5\n                ? -(Math.pow(2, 20 * x - 10) * Math.sin((20 * x - 11.125) * c5)) / 2\n                : (Math.pow(2, -20 * x + 10) * Math.sin((20 * x - 11.125) * c5)) / 2 + 1;\n}\n\n// all curves in an array\nlet curvesIn = [\n    easeInSine,\n    easeInQuad,\n    easeInCubic,\n    easeInQuart,\n    easeInQuint,\n    easeInExpo,\n    easeInCirc,\n    easeInBack\n];\n\nlet curvesOut = [\n    easeOutSine,\n    easeOutQuad,\n    easeOutCubic,\n    easeOutQuart,\n    easeOutQuint,\n    easeOutExpo,\n    easeOutCirc,\n    easeOutBack\n];",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee4cc6d43d001aebae44",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bee4cc6d43d001aebae44"
+      },
+      {
+        "name": "helpers.js.js",
+        "content": "function NYLerpHue(_hueA, _hueB, _t) {\n  let hueA = _hueA;\n  let hueB = _hueB;\n\n  let hueDiff = abs(hueB - hueA);\n\n  if (abs((hueB - 360) - hueA) < hueDiff) {\n    hueB -= 360;\n  }\n  else if (abs((hueB + 360) - hueA) < hueDiff) {\n    hueB += 360;\n  }\n  else {\n    return lerp(_hueA, _hueB, _t);\n  }\n\n  let resultHue = lerp(hueA, hueB, _t);\n\n  if (resultHue < 0) {\n    resultHue += 360;\n  }\n  else if (resultHue > 360) {\n    resultHue -= 360;\n  }\n\n  return resultHue;\n}\n\nfunction NYLerpColor(_colorA, _colorB, _t) {\n  let _hue = NYLerpHue(_colorA.h, _colorB.h, _t);\n  let _sat = lerp(_colorA.s, _colorB.s, _t);\n  let _bri = lerp(_colorA.b, _colorB.b, _t);\n  let _alpha = lerp(_colorA.a, _colorB.a, _t);\n\n  return new NYColor(_hue, _sat, _bri, _alpha);\n}\n\nfunction NYLerpP5Color(_colorA, _colorB, _t) {\n  let hueA = hue(_colorA);\n  let hueB = hue(_colorB);\n\n  let hueDiff = abs(hueB - hueA);\n\n  if (abs((hueB - 360) - hueA) < hueDiff) {\n    hueB -= 360;\n  }\n  else if (abs((hueB + 360) - hueA) < hueDiff) {\n    hueB += 360;\n  }\n  else {\n    return lerpColor(_colorA, _colorB, _t);\n  }\n\n  let satA = saturation(_colorA);\n  let briA = brightness(_colorA);\n  let alphaA = alpha(_colorA);\n\n  let satB = saturation(_colorB);\n  let briB = brightness(_colorB);\n  let alphaB = alpha(_colorB);\n\n  let resultHue = lerp(hueA, hueB, _t);\n  let resultSat = lerp(satA, satB, _t);\n  let resultBri = lerp(briA, briB, _t);\n  let resultAlpha = lerp(alphaA, alphaB, _t);\n\n  if (resultHue < 0) {\n    resultHue += 360;\n  }\n  else if (resultHue > 360) {\n    resultHue -= 360;\n  }\n\n  return color(resultHue, resultSat, resultBri, resultAlpha);\n}\n\nfunction hsbToRgb(_hue, _sat, _bri) {\n\n  // Ensure that the input values are within the valid range\n  let inputHue = processHue(_hue);\n  let inputSat = Math.max(0, Math.min(100, _sat));\n  let inputBri = Math.max(0, Math.min(100, _bri));\n\n  // Convert saturation and brightness to values between 0 and 1\n  inputSat /= 100;\n  inputBri /= 100;\n\n  // Calculate the chroma (color intensity)\n  const chroma = inputSat * inputBri;\n\n  // Calculate the hue sector\n  const hueSector = inputHue / 60;\n\n  // Calculate intermediate values\n  const x = chroma * (1 - Math.abs((hueSector % 2) - 1));\n  const m = inputBri - chroma;\n\n  let r, g, b;\n\n  // Determine the RGB values based on the hue sector\n  if (0 <= hueSector && hueSector < 1) {\n    r = chroma;\n    g = x;\n    b = 0;\n  } else if (1 <= hueSector && hueSector < 2) {\n    r = x;\n    g = chroma;\n    b = 0;\n  } else if (2 <= hueSector && hueSector < 3) {\n    r = 0;\n    g = chroma;\n    b = x;\n  } else if (3 <= hueSector && hueSector < 4) {\n    r = 0;\n    g = x;\n    b = chroma;\n  } else if (4 <= hueSector && hueSector < 5) {\n    r = x;\n    g = 0;\n    b = chroma;\n  } else {\n    r = chroma;\n    g = 0;\n    b = x;\n  }\n\n  // Adjust the RGB values by adding the m (brightness minus chroma)\n  r = (r + m) * 255;\n  g = (g + m) * 255;\n  b = (b + m) * 255;\n\n  // Ensure the RGB values are within the valid range (0 - 255)\n  r = Math.max(0, Math.min(255, r));\n  g = Math.max(0, Math.min(255, g));\n  b = Math.max(0, Math.min(255, b));\n\n  return {\n    r: Math.round(r),\n    g: Math.round(g),\n    b: Math.round(b),\n  };\n}\n\nfunction lchToRgb(lightness, chroma, hue) {\n  // Ensure that the input values are within the valid range\n  lightness = Math.max(0, Math.min(100, lightness));\n  chroma = Math.max(0, Math.min(132, chroma));\n  hue = (hue % 360 + 360) % 360; // Ensure hue is within the range 0-359\n\n  // Convert chroma and lightness to values between 0 and 1\n  chroma /= 132;\n  lightness /= 100;\n\n  // Calculate the angle in radians for the hue\n  const hueRadians = (hue / 360) * (2 * Math.PI);\n\n  // Calculate the intermediate values\n  const x = chroma * Math.cos(hueRadians);\n  const y = chroma * Math.sin(hueRadians);\n\n  // Calculate the temporary values\n  const temp1 = lightness * 2 - 1;\n  const temp2 = chroma * (1 - Math.abs(2 * lightness - 1));\n\n  // Calculate the RGB values\n  let r, g, b;\n\n  if (hue >= 0 && hue < 120) {\n    r = temp2;\n    g = temp1;\n    b = 0;\n  } else if (hue >= 120 && hue < 240) {\n    r = 0;\n    g = temp2;\n    b = temp1;\n  } else {\n    r = temp1;\n    g = 0;\n    b = temp2;\n  }\n\n  // Adjust the RGB values\n  r = (r + chroma) * 255;\n  g = (g + chroma) * 255;\n  b = (b + chroma) * 255;\n\n  // Ensure the RGB values are within the valid range (0 - 255)\n  r = Math.max(0, Math.min(255, r));\n  g = Math.max(0, Math.min(255, g));\n  b = Math.max(0, Math.min(255, b));\n\n  return {\n    r: Math.round(r),\n    g: Math.round(g),\n    b: Math.round(b),\n  };\n}\n\nfunction processHue(_hue) {\n  let result = (_hue % 360 + 360) % 360;\n  return result;\n}\n\n// get angle between two points and return in degrees\nfunction getAngle(_x1, _y1, _x2, _y2) {\n  let xDiff = _x2 - _x1;\n  let yDiff = _y2 - _y1;\n  return atan2(yDiff, xDiff) * 180 / PI + 90;\n}",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee4cce7a64001ae9371f",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bee4cce7a64001ae9371f"
+      },
+      {
+        "name": "objects.js.js",
+        "content": "class PotData {\n    constructor(_x, _y, _potWidth, _potHeight) {\n        this.x = _x;\n        this.y = _y;\n        this.edgePoints = [];\n        this.edgePointCount = int(random(3, 12));\n\n        for (let i = 0; i < this.edgePointCount; i++) {\n            let pointX = random(0.3, 1.0) * _potWidth;\n            let pointY = _potHeight * (i / (this.edgePointCount - 1));\n\n            this.edgePoints.push({ 'x': pointX, 'y': pointY });\n        }\n    }\n}\n\nclass StickObj {\n    constructor(_x, _y, _startDir, _stickLength) {\n        this.x = _x;\n        this.y = _y;\n\n        this.nodes = [];\n        this.nodeCount = 6;\n\n        let segmentAvgLength = _stickLength / this.nodeCount;\n        \n        this.nodes = getStick(_x, _y, _startDir, segmentAvgLength, this.nodeCount);\n    }\n}\n\nclass NYColor {\n    constructor(_h, _s, _b, _a = 1.0) {\n        this.h = _h;\n        this.s = _s;\n        this.b = _b;\n        this.a = _a;\n    }\n\n    copy() {\n        return new NYColor(this.h, this.s, this.b, this.a);\n    }\n\n    slightRandomize(_hDiff = 10, _sDiff = 12, _bDiff = 12, _aDiff = 0.0) {\n        this.h += random(-0.5 * _hDiff, 0.5 * _hDiff);\n        this.s += random(-0.5 * _sDiff, 0.5 * _sDiff);\n        this.b += random(-0.5 * _bDiff, 0.5 * _bDiff);\n        this.a += random(-0.5 * _aDiff, 0.5 * _aDiff);\n\n        this.h = processHue(this.h);\n    }\n\n    color() {\n        return color(this.h, this.s, this.b, this.a);\n    }\n\n    static newRandomColor(_mainHue) {\n        let h = processHue(_mainHue + random(-80, 80));\n        let s = random(40, 100);\n        let b = random(60, 100);\n\n        return new NYColor(h, s, b);\n    }\n}\n\n\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee4cce7a64001ae93724",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bee4cce7a64001ae93724"
+      },
+      {
+        "name": "index.html",
+        "content": "<html>\n    <head>\n    <script src=\"sketch.js.js\" type=\"text/javascript\"></script><script src=\"objects.js.js\" type=\"text/javascript\"></script><script src=\"drawer.js.js\" type=\"text/javascript\"></script><script src=\"divider.js.js\" type=\"text/javascript\"></script><script src=\"easing.js.js\" type=\"text/javascript\"></script><script src=\"helpers.js.js\" type=\"text/javascript\"></script><script src=\"colorSettings.js.js\" type=\"text/javascript\"></script><script src=\"https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js\" type=\"text/javascript\"></script>\n    </head>\n<body>\n</body>\n\n</html>",
+        "children": [],
+        "fileType": "file",
+        "_id": "660bee63c6d43d001aebafa1",
+        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-09T13:14:16.927Z",
+        "isSelectedFile": false,
+        "id": "660bee63c6d43d001aebafa1"
+      }
+    ],
+    "createdAt": "2024-04-02T11:36:08.732Z",
+    "id": "HVA8tqvW2"
+  },
+  {
+    "name": "ims03-Jiaz",
+    "_id": "Ym5U14iSN",
+    "updatedAt": "2024-04-09T13:37:31.163Z",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "66150cb86d276ea0da1f09b1",
+          "66150d6def9f8a001aeec4c1",
+          "66150d79cfe27e001aa1fb98",
+          "66150cb86d276ea0da1f09b0",
+          "66150cb86d276ea0da1f09b2"
+        ],
+        "fileType": "folder",
+        "_id": "66150cb86d276ea0da1f09b3",
+        "createdAt": "2024-04-09T13:37:31.163Z",
+        "updatedAt": "2024-04-09T13:37:31.163Z",
+        "isSelectedFile": false,
+        "id": "66150cb86d276ea0da1f09b3"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://editor.p5js.org/jiaying0822/sketches/Ym5U14iSN\n// //ims03-Jiaz\n\n// Attribution:\n// “Monkey typing Shakespeare's complete works” by jcponcemathhttp://openprocessing.org/sketch/2220803License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n// Link:\n// <iframe src=\"https://openprocessing.org/sketch/2220803/embed/\" width=\"400\" height=\"400\"></iframe>\n\n/*\n A fun experiment! \n \n Monkey typewritting animation\n \n The infinite monkey theorem states that if you let \n a monkey hit the keys of a typewriter at random an \n infinite amount of times, eventually the monkey will \n type out the entire works of Shakespeare. \n \n Author: Juan Carlos Ponce Campuzano\n https://dynamicmath.xyz\n 26/March/2024\n \n I still need to improve it! I will be back to that soon :)\n \n*/\nlet my = {};\n\nlet system; // For storing the particles\n\nlet repeller;\nlet strength = -300;\n\nlet img1, img2;\nlet currentImage;\n\nfunction preload() {\n  // Monkey images made with GeoGebra\n  // https://www.geogebra.org/m/ke9sdhex\n  img1 = loadImage(\"monkey-curves-left.png\");\n  img2 = loadImage(\"monkey-curves-right.png\");\n}\n\nlet letters = \"abcdefghijklmnopqrstuvwxyz\"; // Array of characters\n\nlet initialPositionX, initialPositionY;\n\nlet intervalSlider;\n\nfunction setup() {\n  my.width = 600;\n  my.height = 600;\n  my.xpos = 0;\n  my.ypos = 0;\n  // if (!my.debug) {\n  //   my.width = windowWidth;\n  //   my.height = windowHeight;\n  // }\n  createCanvas(my.width, my.height);\n  // Attempt to load the saved slider value from local storage\n  let savedValue = localStorage.getItem(\"sliderValue\");\n  console.log(\"Loaded savedValue from localStorage:\", savedValue); // Debug log\n\n  if (savedValue !== null) {\n    switchInterval = int(savedValue); // Convert to integer, as localStorage stores everything as strings\n  } else {\n    switchInterval = 15; // Default value if nothing is saved\n  }\n  // Create a slider for the interval (min value, max value, starting value)\n  intervalSlider = createSlider(1, 60, switchInterval);\n  intervalSlider.position(120, height - 30);\n  // Save the slider value to local storage whenever it changes\n  intervalSlider.input(() =>\n    localStorage.setItem(\"sliderValue\", intervalSlider.value())\n  );\n\n  currentImage = img1; // Start with img1 displayed\n\n  initialValues();\n\n  system = new ParticleSystem(createVector(initialPositionX, initialPositionY));\n\n  // Add a general description of the canvas.\n  describe(\n    \"The infinite monkey theorem states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type any given text, including the complete works of William Shakespeare. ∞ 🤯 \"\n  );\n  my.fullScreenBtn = createButton(\"Full Screen\");\n  my.fullScreenBtn.mousePressed(full_screen_action);\n  my.fullScreenBtn.style(\"font-size:24px\");\n  new_pos();\n}\n\nfunction full_screen_action() {\n  my.fullScreenBtn.remove();\n  fullscreen(true); // Explicitly using true for readability\n  let delay = 3000;\n  setTimeout(ui_present_window, delay);\n}\n\nfunction ui_present_window() {\n  resizeCanvas(windowWidth, windowHeight);\n  // init_dim();\n}\n\nfunction new_pos() {\n  my.xpos = random(0, width);\n  my.ypos = random(0, height);\n}\n\nfunction draw() {\n  background(0);\n  cursor(HAND);\n  // Set the text characteristics\n  fill(255, 255, 255); // Set the fill color to black\n  noStroke(); // Ensure no stroke/outline is drawn around the text\n  textSize(16); // Set the text size\n  // Display the label for the slider\n  text(\"Typing Speed:\", 10, height - 15);\n\n  /* Add monkey animation */\n\n  // Calculate the scale factor based on the canvas size\n  let scaleFactor = min(width / img1.width, height / img1.height) * 0.5;\n\n  // Calculate the scaled image size\n  let scaledWidth = img1.width * scaleFactor;\n  let scaledHeight = img1.height * scaleFactor;\n\n  // Calculate the position for the scaled image\n  let posX = (width * 8) / 10 - scaledWidth / 2;\n  let posY = (height * 8) / 10 - scaledHeight / 2;\n\n  // Display the current image at the specified position with scaled size\n  image(currentImage, posX, posY, scaledWidth, scaledHeight);\n\n  // Read the value from the slider\n  switchInterval = intervalSlider.value();\n  text(switchInterval, 260, height - 15);\n\n  // Alternate between img1 and img2 every second\n  if (frameCount % switchInterval == 0) {\n    // 60 frames per second\n    if (currentImage === img1) {\n      currentImage = img2;\n    } else {\n      currentImage = img1;\n    }\n  }\n\n  /* Add particles */\n\n  system.addParticle();\n\n  // We're applying a universal gravity.\n  let gravity = createVector(0, 0.1);\n  system.applyForce(gravity);\n\n  // Applying the repeller\n  repeller = new Repeller(0, 0);\n\n  system.applyRepeller(repeller);\n\n  system.run();\n  //repeller1.display();\n}\n\nfunction initialValues() {\n  initialPositionX = width - (width * 3.5) / 12;\n  initialPositionY = height - (height * 1.9) / 10;\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  initialValues();\n  system = new ParticleSystem(createVector(initialPositionX, initialPositionY));\n  intervalSlider.position(120, windowHeight - 30);\n}\n\nclass Particle {\n  constructor(position) {\n    this.acceleration = createVector(0, 0);\n    this.velocity = createVector(random(-1, 1), random(-1, 0));\n    this.position = position.copy();\n    this.lifespan = 600;\n    this.mass = 2;\n    this.letter = letters.charAt(floor(random(letters.length))); // Choose a random letter from the array\n  }\n\n  run() {\n    this.update();\n    this.display();\n  }\n\n  applyForce(force) {\n    this.force = force.copy();\n    force.div(this.mass);\n    this.acceleration.add(force);\n    this.display();\n  }\n\n  // Method to update position\n  update() {\n    this.velocity.add(this.acceleration);\n    this.position.add(this.velocity);\n    this.acceleration.mult(0);\n    this.lifespan -= 2;\n    this.radius -= 0.01;\n  }\n\n  // Method to display\n  display() {\n    push();\n    fill(255, this.lifespan);\n    stroke(0, this.lifespan);\n    strokeWeight(1.7);\n    textSize(32);\n    textAlign(CENTER, CENTER);\n    text(this.letter, this.position.x, this.position.y);\n    pop();\n  }\n\n  // Is the particle still useful?\n  isDead() {\n    return this.lifespan < 0;\n  }\n}\n\nclass ParticleSystem {\n  constructor(position) {\n    this.origin = position.copy();\n    this.particles = [];\n  }\n\n  addParticle() {\n    this.particles.push(new Particle(this.origin));\n  }\n\n  applyForce(force) {\n    for (let p of this.particles) {\n      p.applyForce(force);\n    }\n  }\n\n  applyRepeller(r) {\n    for (let p of this.particles) {\n      this.force = r.repel(p);\n      p.applyForce(this.force);\n    }\n  }\n\n  run() {\n    for (var i = this.particles.length - 1; i >= 0; i--) {\n      var p = this.particles[i];\n      p.run();\n      if (p.isDead()) {\n        this.particles.splice(i, 1);\n      }\n    }\n  }\n}\n\n// Repeller class\nclass Repeller {\n  constructor(x, y) {\n    this.position = new p5.Vector(x, y);\n    this.r = 35;\n  }\n\n  display() {\n    stroke(140);\n    fill(0);\n    ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);\n  }\n\n  repel(p) {\n    // [full] This is the same repel algorithm used in Chapter 2:\n    // forces based on gravitational attraction:\n    // https://natureofcode.com/forces/\n    this.dir = new p5.Vector.sub(this.position, p.position);\n    this.d = this.dir.mag();\n    this.dir.normalize();\n    this.d = constrain(this.d, 5, 100);\n    this.force = (-1.5 * strength) / (this.d * this.d);\n    this.dir.mult(this.force);\n    return this.dir;\n    //[end]\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66150cb86d276ea0da1f09b0",
+        "isSelectedFile": true,
+        "createdAt": "2024-04-09T13:37:31.163Z",
+        "updatedAt": "2024-04-09T13:37:31.163Z",
+        "id": "66150cb86d276ea0da1f09b0"
+      },
+      {
+        "name": "index.html",
+        "content": "<html>\n    <head>\n    <script src=\"sketch.js\" type=\"text/javascript\"></script><script src=\"https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js\" type=\"text/javascript\"></script>\n      <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    </head>\n<body>\n</body>\n\n</html>",
+        "children": [],
+        "fileType": "file",
+        "_id": "66150cb86d276ea0da1f09b1",
+        "createdAt": "2024-04-09T13:37:31.163Z",
+        "updatedAt": "2024-04-09T13:37:31.163Z",
+        "isSelectedFile": false,
+        "id": "66150cb86d276ea0da1f09b1"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n  overflow: hidden; /* Prevent scrollbars from appearing */\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66150cb86d276ea0da1f09b2",
+        "createdAt": "2024-04-09T13:37:31.163Z",
+        "updatedAt": "2024-04-09T13:37:31.163Z",
+        "isSelectedFile": false,
+        "id": "66150cb86d276ea0da1f09b2"
+      },
+      {
+        "name": "monkey-curves-left.png",
+        "content": "",
+        "children": [],
+        "fileType": "file",
+        "_id": "66150d6def9f8a001aeec4c1",
+        "url": "https://assets.editor.p5js.org/6331e502cb37e2001a54fa9b/5817e2c7-db0a-4d76-a4a6-40d001fe1a1f.png",
+        "updatedAt": "2024-04-09T13:37:31.163Z",
+        "createdAt": "2024-04-09T13:37:31.163Z",
+        "isSelectedFile": false,
+        "id": "66150d6def9f8a001aeec4c1"
+      },
+      {
+        "name": "monkey-curves-right.png",
+        "content": "",
+        "children": [],
+        "fileType": "file",
+        "_id": "66150d79cfe27e001aa1fb98",
+        "url": "https://assets.editor.p5js.org/6331e502cb37e2001a54fa9b/902e0027-21c4-49b7-a096-ba09a4e5edc5.png",
+        "updatedAt": "2024-04-09T13:37:31.163Z",
+        "createdAt": "2024-04-09T13:37:31.163Z",
+        "isSelectedFile": false,
+        "id": "66150d79cfe27e001aa1fb98"
+      }
+    ],
+    "createdAt": "2024-04-09T09:39:53.439Z",
+    "id": "Ym5U14iSN"
   },
   {
     "name": "Invisible Message",
