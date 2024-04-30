@@ -10,6 +10,7 @@ let dotDensity = 0.8;
 let stickDotDensity = 0.8;
 
 async function drawPot(_potData) {
+  clear(); // Ensure canvas is clear
 
     let startX = _potData.x;
     let startY = _potData.y;
@@ -96,7 +97,8 @@ async function drawPot(_potData) {
         await drawStick(newStickObj);
       await sleep (10);
     }
-  
+  // background(220);
+  drawPot(_potData);
 }
 
 async function drawEdgeSegment(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {

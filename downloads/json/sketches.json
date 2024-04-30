@@ -1679,7 +1679,7 @@
   {
     "name": "ims02-Jiaz",
     "_id": "HVA8tqvW2",
-    "updatedAt": "2024-04-09T13:14:16.927Z",
+    "updatedAt": "2024-04-18T03:26:51.416Z",
     "files": [
       {
         "name": "root",
@@ -1697,30 +1697,30 @@
         ],
         "fileType": "folder",
         "_id": "660bed5c25b761aa580f27ef",
-        "createdAt": "2024-04-09T13:14:16.927Z",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bed5c25b761aa580f27ef"
       },
       {
         "name": "sketch.js.js",
-        "content": "//https://editor.p5js.org/jiaying0822/sketches/HVA8tqvW2\n//ims02-Jiaz\n\n//Attribution: “Zen Pots” by newyellowhttp://openprocessing.org/sketch/2036000License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n\n//Link to sketch in OpenProcessing: <iframe src=\"https://openprocessing.org/sketch/2036000/embed/\" width=\"400\" height=\"400\"></iframe>\n\nlet _backLayer;\nlet _midLayer;\nlet _frontLayer;\n\nlet _colorSet;\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n\tdescribe('This work randomly assembles different easing curves to create a pot shape and then uses stroke dots for an overall aesthetic style.');\n\t\n  _backLayer = createGraphics(width, height);\n  _midLayer = createGraphics(width, height);\n  _frontLayer = createGraphics(width, height);\n  \n  _backLayer.colorMode(HSB);\n  _midLayer.colorMode(HSB);\n  _frontLayer.colorMode(HSB);\n  colorMode(HSB);\n\n  // get color\n  _colorSet = GetColorSet();\n  _backLayer.background(_colorSet.bgColor.h, _colorSet.bgColor.s, _colorSet.bgColor.b);\n\n  let padding = 0.15 * min(width, height);\n\n  // bg part\n  let baseHeight = padding + 0.85 * (height - 2 * padding);\n\n  let bgHeight = 0.06 * height;\n  let xCount = width * random(0.6, 1.2);\n\n  for (let x = 0; x < xCount; x++) {\n    let yDotCount = bgHeight * dotDensity * 0.6;\n\n    for (let y = 0; y < yDotCount; y++) {\n      let t = tan(random(TWO_PI));\n\n      let nowX = x * (width / (xCount - 1));\n      let nowY = baseHeight - bgHeight * t - 0.2 * height;\n\n      // _backLayer.noStroke();\n      _backLayer.noFill();\n      _backLayer.stroke(_colorSet.bgDotColor.h, _colorSet.bgDotColor.s, _colorSet.bgDotColor.b);\n      _backLayer.circle(nowX, nowY, random(0, 2));\n    }\n  }\n  UpdateLayers();\n\n\n  let potCount = int(random(6, 18));\n  // let potCount = 17;\n  let potWidth = (width - padding * 2) / potCount;\n\n  for (let i = 0; i < potCount; i++) {\n    let potX = padding + (i + 0.5) * potWidth;\n    let potY = baseHeight;\n\n    let potHeight = random(0.4, 2.0) * potWidth;\n    let newPot = new PotData(potX, potY, potWidth / 2, potHeight);\n\n    await drawPot(newPot);\n    await sleep(2000); //added line, slow down drawings between pots - Jiaz\n  }\n  UpdateLayers();\n  await sleep(1000); //added line, slower - Jiaz\n}\n\nfunction UpdateLayers () {\n  background(0, 0, 100);\n  image(_backLayer, 0, 0);\n  image(_midLayer, 0, 0);\n  image(_frontLayer, 0, 0);\n}\n// async sleep\nfunction sleep(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms))\n}",
+        "content": "//https://editor.p5js.org/jiaying0822/sketches/HVA8tqvW2\n//ims02-Jiaz\n\n//Attribution: “Zen Pots” by newyellowhttp://openprocessing.org/sketch/2036000License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n\n//Link to sketch in OpenProcessing: <iframe src=\"https://openprocessing.org/sketch/2036000/embed/\" width=\"400\" height=\"400\"></iframe>\n\nlet _backLayer;\nlet _midLayer;\nlet _frontLayer;\nlet my = {};\nlet scaleX, scaleY;\n\nlet _colorSet;\n\nasync function setup() {\n  my.width = 800;\n  my.height = 800;\n  my.xpos = 0;\n  my.ypos = 0;\n  createCanvas(my.width, my.height);\n  describe(\n    \"This work randomly assembles different easing curves to create a pot shape and then uses stroke dots for an overall aesthetic style.\"\n  );\n\n  _backLayer = createGraphics(width, height);\n  _midLayer = createGraphics(width, height);\n  _frontLayer = createGraphics(width,height);\n\n  _backLayer.colorMode(HSB);\n  _midLayer.colorMode(HSB);\n  _frontLayer.colorMode(HSB);\n  colorMode(HSB);\n\n  // get color\n  _colorSet = GetColorSet();\n  _backLayer.background(\n    _colorSet.bgColor.h,\n    _colorSet.bgColor.s,\n    _colorSet.bgColor.b\n  );\n\n  let padding = 0.15 * min(width, height);\n\n  // bg part\n  let baseHeight = padding + 0.85 * (height - 2 * padding);\n\n  let bgHeight = 0.06 * height;\n  let xCount = width * random(0.6, 1.2);\n\n  for (let x = 0; x < xCount; x++) {\n    let yDotCount = bgHeight * dotDensity * 0.6;\n\n    for (let y = 0; y < yDotCount; y++) {\n      let t = tan(random(TWO_PI));\n\n      let nowX = x * (width / (xCount - 1));\n      let nowY = baseHeight - bgHeight * t - 0.2 * height;\n\n      // _backLayer.noStroke();\n      _backLayer.noFill();\n      _backLayer.stroke(\n        _colorSet.bgDotColor.h,\n        _colorSet.bgDotColor.s,\n        _colorSet.bgDotColor.b\n      );\n      _backLayer.circle(nowX, nowY, random(0, 2));\n    }\n  }\n  UpdateLayers();\n\n  my.fullScreenBtn = createButton(\"Full Screen\");\n  my.fullScreenBtn.mousePressed(full_screen_action);\n  my.fullScreenBtn.style(\"font-size:24px\");\n  new_pos();\n  let potCount = int(random(6, 18));\n  // let potCount = 17;\n  let potWidth = (width - padding * 2) / potCount;\n\n  for (let i = 0; i < potCount; i++) {\n    let potX = padding + (i + 0.5) * potWidth;\n    let potY = baseHeight;\n\n    let potHeight = random(0.4, 2.0) * potWidth;\n    let newPot = new PotData(potX, potY, potWidth / 2, potHeight);\n\n    // await drawPot(newPot);\n    await sleep(2000); //added line, slow down drawings between pots - Jiaz\n  }\n  UpdateLayers();\n  await sleep(1000); //added line, slower - Jiaz\n}\nfunction full_screen_action() {\n  my.fullScreenBtn.remove();\n  fullscreen(true); // Explicitly using true for readability\n  let delay = 3000;\n  setTimeout(ui_present_window, delay);\n  // clear();\n  // _backLayer.clear();\n  // _midLayer.clear();\n  // _frontLayer.clear();\n}\n\nfunction ui_present_window() {\n  resizeCanvas(windowWidth, windowHeight);\n  scaleX = windowWidth / my.width;\n  scaleY = windowHeight / my.height;\n  redrawGraphics();\n  // init_dim();\n}\nfunction redrawGraphics() {\n  _backLayer.resizeCanvas(windowWidth, windowHeight);\n  _midLayer.resizeCanvas(windowWidth, windowHeight);\n  _frontLayer.resizeCanvas(windowWidth, windowHeight);\n  \n  // Redefine background color after clear if needed\n  _backLayer.background(\n    _colorSet.bgColor.h,\n    _colorSet.bgColor.s,\n    _colorSet.bgColor.b\n  );\n\n  // Recalculate and redraw background dots\n  let xCount = scaleX * width * random(0.6, 1.2);\n  let bgHeight = 0.06 * height;\n  let baseHeight = 0.15 * min(width, height) + 0.85 * (height - 2 * 0.15 * min(width, height));\n\n  for (let x = 0; x < xCount; x++) {\n    let yDotCount = bgHeight * dotDensity * 0.6;\n    for (let y = 0; y < yDotCount; y++) {\n      let t = tan(random(TWO_PI));\n      let nowX = x * (width / (xCount - 1));\n      let nowY = baseHeight - bgHeight * t - 0.2 * height;\n      _backLayer.circle(nowX, nowY, random(0, 2));\n    }\n  }\n\n  // Redraw pots with new positions and scales\n  let potCount = int(random(6, 18));\n  let potWidth = (width - 0.15 * min(width, height) * 2) / potCount;\n\n  for (let i = 0; i < potCount; i++) {\n    let potX = 0.15 * min(width, height) + (i + 0.5) * potWidth;\n    let potY = baseHeight;\n    let potHeight = random(0.4, 2.0) * potWidth;\n    let newPot = new PotData(potX, potY, potWidth / 2, potHeight);\n    drawPot(newPot);\n  }\n\n  UpdateLayers();\n}\n\n\nfunction new_pos() {\n  my.xpos = random(0, width);\n  my.ypos = random(0, height);\n}\n\nfunction UpdateLayers() {\n  background(0, 0, 100);\n  image(_backLayer, 0, 0);\n  image(_midLayer, 0, 0);\n  image(_frontLayer, 0, 0);\n}\n// async sleep\nfunction sleep(ms) {\n  return new Promise((resolve) => setTimeout(resolve, ms));\n}\n",
         "children": [],
         "fileType": "file",
         "_id": "660bed5c25b761aa580f27ec",
         "isSelectedFile": false,
-        "createdAt": "2024-04-09T13:14:16.927Z",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
         "id": "660bed5c25b761aa580f27ec"
       },
       {
         "name": "style.css",
-        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n  overflow: hidden; /* Prevent scrollbars from appearing */\n}\ncanvas {\n  display: block;\n}\n",
         "children": [],
         "fileType": "file",
         "_id": "660bed5c25b761aa580f27ee",
-        "createdAt": "2024-04-09T13:14:16.927Z",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bed5c25b761aa580f27ee"
       },
@@ -1730,8 +1730,8 @@
         "children": [],
         "fileType": "file",
         "_id": "660bee3ae31672001a5cbecb",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bee3ae31672001a5cbecb"
       },
@@ -1741,19 +1741,19 @@
         "children": [],
         "fileType": "file",
         "_id": "660bee4cce7a64001ae9371c",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bee4cce7a64001ae9371c"
       },
       {
         "name": "drawer.js.js",
-        "content": "// https://editor.p5js.org/jiaying0822/sketches/HVA8tqvW2\n// ims02-Jiaz\n\n//Attribution: “Zen Pots” by newyellowhttp://openprocessing.org/sketch/2036000License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n\n//<iframe src=\"https://openprocessing.org/sketch/2036000/embed/\" width=\"400\" height=\"400\"></iframe>\n\nlet lineDensity = 0.8;\nlet dotDensity = 0.8;\nlet stickDotDensity = 0.8;\n\nasync function drawPot(_potData) {\n\n    let startX = _potData.x;\n    let startY = _potData.y;\n\n    let edgePoints = _potData.edgePoints;\n\n    // pick the curves first\n    let edgeCurves = [];\n    let isOutCurve = random() < 0.5;\n\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        if (isOutCurve)\n            edgeCurves.push(curvesOut[int(random(curvesOut.length))]);\n        else\n            edgeCurves.push(curvesIn[int(random(curvesIn.length))]);\n\n        isOutCurve = !isOutCurve;\n    }\n\n    // draw pot body\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        let nowPoint = edgePoints[i];\n        let nextPoint = edgePoints[(i + 1)];\n\n        let fromX = _potData.x;\n        let fromY = _potData.y - nowPoint.y;\n        let fromDist = nowPoint.x;\n\n        let toX = _potData.x;\n        let toY = _potData.y - nextPoint.y;\n        let toDist = nextPoint.x;\n\n        let currentCurve = edgeCurves[i];\n        await drawEdgeSegment(fromX, fromY, fromDist, toX, toY, toDist, currentCurve);\n    }\n\n    // draw edge dots\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        let nowPoint = edgePoints[i];\n        let nextPoint = edgePoints[(i + 1)];\n\n        let fromX = _potData.x;\n        let fromY = _potData.y - nowPoint.y;\n        let fromDist = nowPoint.x;\n\n        let toX = _potData.x;\n        let toY = _potData.y - nextPoint.y;\n        let toDist = nextPoint.x;\n\n        let currentCurve = edgeCurves[i];\n        await drawSegmentDots(fromX, fromY, fromDist, toX, toY, toDist, currentCurve);\n    }\n\n    // draw stick\n    let baseAngleT = random(0.6, 0.8);\n    let endAngleT = random(0.2, 0.4);\n\n    if (random() < 0.5) {\n        baseAngleT = random(0.2, 0.4);\n        endAngleT = random(0.6, 0.8);\n    }\n\n    let baseRadius = edgePoints[0].x;\n    let endRadius = edgePoints[edgePoints.length - 1].x;\n    let endYOffset = edgePoints[edgePoints.length - 1].y;\n\n    let baseX = startX + baseRadius * sin(radians(lerp(90, 270, baseAngleT)));\n    let baseY = startY + baseRadius * 0.24 * -cos(radians(lerp(90, 270, baseAngleT)));\n\n    let endX = startX + endRadius * sin(radians(lerp(90, 270, endAngleT)));\n    let endY = startY - endYOffset + endRadius * 0.24 * -cos(radians(lerp(90, 270, endAngleT)));\n\n    // _midLayer.stroke(0, 0, 6);\n    // _midLayer.strokeWeight(3);\n    // _midLayer.line(baseX, baseY, endX, endY);\n\n    if (random() < 0.6) {\n        let stickAngle = getAngle(baseX, baseY, endX, endY);\n        let stickX = lerp(baseX, endX, 0.9);\n        let stickY = lerp(baseY, endY, 0.9);\n        let stickLength = random(1.6, 3.0) * endYOffset;\n\n        let newStickObj = new StickObj(stickX, stickY, stickAngle, stickLength);\n        await drawStick(newStickObj);\n      await sleep (10);\n    }\n  \n}\n\nasync function drawEdgeSegment(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {\n    let lineCount = lineDensity * dist(_fromX, _fromY, _toX, _toY);\n\n    for (let i = 0; i < lineCount; i++) {\n        let t = i / lineCount; // not drawing the last line\n        let curveT = _curveFunc(t);\n\n        let centerX = lerp(_fromX, _toX, t);\n        let centerY = lerp(_fromY, _toY, t);\n\n        let nowDist = lerp(_fromDist, _toDist, curveT);\n\n        let leftX = centerX - nowDist;\n        let leftY = centerY;\n\n        let rightX = centerX + nowDist;\n        let rightY = centerY;\n\n        let nowColor = new NYColor(0, 0, 0);\n\n        // nowColor = NYLerpColor(_colorSet.potStrokeColorA, _colorSet.potStrokeColorB, t);\n        nowColor = _colorSet.potStrokeColorA;\n        drawCurveLine(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 12);\n\n        // nowColor = NYLerpColor(_colorSet.potInsideColorA, _colorSet.potInsideColorB, t);\n        nowColor = _colorSet.potInsideColorA;\n        drawCurveLine(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 3);\n        UpdateLayers();\n        await sleep(100);\n    }\n}\n\nfunction drawCurveLine(_x1, _y1, _x2, _y2, _curveHeight, _dotColor, _thickness) {\n    let centerX = (_x1 + _x2) / 2;\n    let centerY = (_y1 + _y2) / 2;\n\n    let r1 = abs(_x2 - _x1) / 2;\n    let r2 = _curveHeight;\n    let ellipseRadius = 2 * PI * sqrt((r1 * r1 + r2 * r2) / 2);\n\n    let dotCount = int(ellipseRadius * dotDensity);\n\n    let fromAngle = 0;\n    let toAngle = 360;\n\n    let targetLayer = _backLayer;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = i / (dotCount - 1);\n        let nowAngle = lerp(fromAngle, toAngle, t);\n        let briAddRatio = sin(radians(lerp(0, 180, t)));\n        let strokeWidthRatio = abs(sin(radians(nowAngle + random(-60, 60))));\n\n        let x = centerX + r1 * sin(radians(nowAngle));\n        let y = centerY + r2 * -cos(radians(nowAngle));\n\n        let dotSize = noise(centerX, centerY, nowAngle * 0.1) * _thickness + 2;\n\n        if (nowAngle > 90 && nowAngle < 270)\n            targetLayer = _frontLayer;\n        else\n            targetLayer = _backLayer;\n\n        targetLayer.noStroke();\n        // stroke(100, 20, 60);\n        // strokeWeight(1 * strokeWidthRatio);\n        targetLayer.fill(_dotColor.h, _dotColor.s, _dotColor.b + briAddRatio * 20);\n        targetLayer.circle(x, y, dotSize);\n    }\n}\n\nasync function drawSegmentDots(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {\n    let lineCount = lineDensity * dist(_fromX, _fromY, _toX, _toY);\n\n    for (let i = 0; i < lineCount; i++) {\n        let t = i / lineCount; // not drawing the last line\n        let curveT = _curveFunc(t);\n\n        let centerX = lerp(_fromX, _toX, t);\n        let centerY = lerp(_fromY, _toY, t);\n\n        let nowDist = lerp(_fromDist, _toDist, curveT);\n\n        let leftX = centerX - nowDist;\n        let leftY = centerY;\n\n        let rightX = centerX + nowDist;\n        let rightY = centerY;\n\n        let nowColor = new NYColor(100, 60, 40);\n\n        nowColor = _colorSet.potEdgeDotColor;\n        drawCurveLineDots(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 1);\n        UpdateLayers();\n        await sleep(1);\n    }\n}\n\nfunction drawCurveLineDots(_x1, _y1, _x2, _y2, _curveHeight, _dotColor, _thickness) {\n    let centerX = (_x1 + _x2) / 2;\n    let centerY = (_y1 + _y2) / 2;\n\n    let r1 = abs(_x2 - _x1) / 2;\n    let r2 = _curveHeight;\n    let ellipseRadius = 2 * PI * sqrt((r1 * r1 + r2 * r2) / 2);\n\n    let dotCount = 100;\n\n    let fromAngle = 90;\n    let toAngle = 270;\n\n    let targetLayer = _frontLayer;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = 1 - random(random(random()));\n\n        let nowAngle = lerp(fromAngle, toAngle, t);\n\n        let x = centerX + r1 * sin(radians(nowAngle));\n        let y = centerY + r2 * -cos(radians(nowAngle));\n\n        let dotSize = noise(centerX, centerY, nowAngle * 0.1) * _thickness + 1;\n\n        targetLayer.noStroke();\n        // stroke(100, 20, 60);\n        // strokeWeight(1 * strokeWidthRatio);\n        targetLayer.fill(_dotColor.h, _dotColor.s, _dotColor.b);\n        targetLayer.circle(x, y, dotSize);\n    }\n}\n\nfunction drawStick(_x, _y, _startDir, _thickness, _length) {\n    let lineCount = lineDensity * _length;;\n    let stepDistance = 1.0 / (lineDensity);\n\n    let nowX = _x;\n    let nowY = _y;\n    let nowAngle = _startDir;\n    let baseAngle = _startDir;\n\n    let noiseZ = random(-1000000, 1000000);\n\n    for (let i = 0; i < lineCount; i++) {\n        circle(nowX, nowY, 12);\n\n        strokeWeight(1);\n        stroke(0, 0, 10);\n        fill(0, 0, random(30, 60));\n\n        nowAngle = _startDir + noise(nowX * 0.06, nowY * 0.06, noiseZ) * 60 - 30;\n        nowX += sin(radians(nowAngle)) * stepDistance;\n        nowY -= cos(radians(nowAngle)) * stepDistance;\n\n    }\n\n}\n\n\nasync function drawStick(_stickObj) {\n\n    let hasFlower = random() < 0.5;\n\n    for (let i = 0; i < _stickObj.nodes.length; i++) {\n        let nodeData = _stickObj.nodes[i];\n        // _midLayer.strokeWeight(3);\n        // _midLayer.stroke(0, 0, 20);\n        // _midLayer.line(nodeData.x1, nodeData.y1, nodeData.x2, nodeData.y2);\n        _midLayer.noStroke();\n        _midLayer.fill(_colorSet.stickColor.h, _colorSet.stickColor.s, _colorSet.stickColor.b);\n\n        let nowThickness = 3;\n\n        if (nodeData.nodeDepth <= 2) {\n            nowThickness = 2;\n        }\n        drawStickBranch(nodeData.x1, nodeData.y1, nodeData.x2, nodeData.y2, nowThickness);\n\n        if (nodeData.nodeDepth <= 3 && hasFlower)\n            drawDottedFlowers(nodeData);\n\n        UpdateLayers();\n        await sleep(100);\n    }\n}\n\nfunction drawStickBranch(_x1, _y1, _x2, _y2, _thickness) {\n    let dotCount = dist(_x1, _y1, _x2, _y2) * stickDotDensity;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = i / (dotCount - 1);\n        let nowX = lerp(_x1, _x2, t);\n        let nowY = lerp(_y1, _y2, t);\n\n        let normalAngle = getAngle(_x1, _y1, _x2, _y2) + 90;\n\n        nowX += sin(radians(normalAngle)) * noise(nowX * 0.1, nowY * 0.1, 666.0) * _thickness;\n        nowY -= cos(radians(normalAngle)) * noise(nowX * 0.1, nowY * 0.1, 999.0) * _thickness;\n\n        let dotSize = noise(nowX * 0.6, nowY * 0.6) * _thickness + _thickness * 0.5;\n        _midLayer.circle(nowX, nowY, dotSize);\n    }\n}\n\nfunction drawDottedFlowers(_node) {\n    let flowerDotCount = int(random(0, 6));\n\n    for (let i = 0; i < flowerDotCount; i++) {\n        let xPos = lerp(_node.x1, _node.x2, random());\n        let yPos = lerp(_node.y1, _node.y2, random());\n\n        xPos += random() * 60 - 30;\n        yPos += random() * 60 - 30;\n\n        let dotSize = random(0.1, 6);\n\n        _midLayer.noStroke();\n        _midLayer.fill(_colorSet.flowerColor.h, _colorSet.flowerColor.s, _colorSet.flowerColor.b);\n        _midLayer.circle(xPos, yPos, dotSize);\n    }\n}",
+        "content": "// https://editor.p5js.org/jiaying0822/sketches/HVA8tqvW2\n// ims02-Jiaz\n\n//Attribution: “Zen Pots” by newyellowhttp://openprocessing.org/sketch/2036000License CreativeCommons Attribution NonCommercial ShareAlikehttps://creativecommons.org/licenses/by-nc-sa/3.0\n\n//<iframe src=\"https://openprocessing.org/sketch/2036000/embed/\" width=\"400\" height=\"400\"></iframe>\n\nlet lineDensity = 0.8;\nlet dotDensity = 0.8;\nlet stickDotDensity = 0.8;\n\nasync function drawPot(_potData) {\n  clear(); // Ensure canvas is clear\n\n    let startX = _potData.x;\n    let startY = _potData.y;\n\n    let edgePoints = _potData.edgePoints;\n\n    // pick the curves first\n    let edgeCurves = [];\n    let isOutCurve = random() < 0.5;\n\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        if (isOutCurve)\n            edgeCurves.push(curvesOut[int(random(curvesOut.length))]);\n        else\n            edgeCurves.push(curvesIn[int(random(curvesIn.length))]);\n\n        isOutCurve = !isOutCurve;\n    }\n\n    // draw pot body\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        let nowPoint = edgePoints[i];\n        let nextPoint = edgePoints[(i + 1)];\n\n        let fromX = _potData.x;\n        let fromY = _potData.y - nowPoint.y;\n        let fromDist = nowPoint.x;\n\n        let toX = _potData.x;\n        let toY = _potData.y - nextPoint.y;\n        let toDist = nextPoint.x;\n\n        let currentCurve = edgeCurves[i];\n        await drawEdgeSegment(fromX, fromY, fromDist, toX, toY, toDist, currentCurve);\n    }\n\n    // draw edge dots\n    for (let i = 0; i < edgePoints.length - 1; i++) {\n        let nowPoint = edgePoints[i];\n        let nextPoint = edgePoints[(i + 1)];\n\n        let fromX = _potData.x;\n        let fromY = _potData.y - nowPoint.y;\n        let fromDist = nowPoint.x;\n\n        let toX = _potData.x;\n        let toY = _potData.y - nextPoint.y;\n        let toDist = nextPoint.x;\n\n        let currentCurve = edgeCurves[i];\n        await drawSegmentDots(fromX, fromY, fromDist, toX, toY, toDist, currentCurve);\n    }\n\n    // draw stick\n    let baseAngleT = random(0.6, 0.8);\n    let endAngleT = random(0.2, 0.4);\n\n    if (random() < 0.5) {\n        baseAngleT = random(0.2, 0.4);\n        endAngleT = random(0.6, 0.8);\n    }\n\n    let baseRadius = edgePoints[0].x;\n    let endRadius = edgePoints[edgePoints.length - 1].x;\n    let endYOffset = edgePoints[edgePoints.length - 1].y;\n\n    let baseX = startX + baseRadius * sin(radians(lerp(90, 270, baseAngleT)));\n    let baseY = startY + baseRadius * 0.24 * -cos(radians(lerp(90, 270, baseAngleT)));\n\n    let endX = startX + endRadius * sin(radians(lerp(90, 270, endAngleT)));\n    let endY = startY - endYOffset + endRadius * 0.24 * -cos(radians(lerp(90, 270, endAngleT)));\n\n    // _midLayer.stroke(0, 0, 6);\n    // _midLayer.strokeWeight(3);\n    // _midLayer.line(baseX, baseY, endX, endY);\n\n    if (random() < 0.6) {\n        let stickAngle = getAngle(baseX, baseY, endX, endY);\n        let stickX = lerp(baseX, endX, 0.9);\n        let stickY = lerp(baseY, endY, 0.9);\n        let stickLength = random(1.6, 3.0) * endYOffset;\n\n        let newStickObj = new StickObj(stickX, stickY, stickAngle, stickLength);\n        await drawStick(newStickObj);\n      await sleep (10);\n    }\n  // background(220);\n  drawPot(_potData);\n}\n\nasync function drawEdgeSegment(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {\n    let lineCount = lineDensity * dist(_fromX, _fromY, _toX, _toY);\n\n    for (let i = 0; i < lineCount; i++) {\n        let t = i / lineCount; // not drawing the last line\n        let curveT = _curveFunc(t);\n\n        let centerX = lerp(_fromX, _toX, t);\n        let centerY = lerp(_fromY, _toY, t);\n\n        let nowDist = lerp(_fromDist, _toDist, curveT);\n\n        let leftX = centerX - nowDist;\n        let leftY = centerY;\n\n        let rightX = centerX + nowDist;\n        let rightY = centerY;\n\n        let nowColor = new NYColor(0, 0, 0);\n\n        // nowColor = NYLerpColor(_colorSet.potStrokeColorA, _colorSet.potStrokeColorB, t);\n        nowColor = _colorSet.potStrokeColorA;\n        drawCurveLine(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 12);\n\n        // nowColor = NYLerpColor(_colorSet.potInsideColorA, _colorSet.potInsideColorB, t);\n        nowColor = _colorSet.potInsideColorA;\n        drawCurveLine(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 3);\n        UpdateLayers();\n        await sleep(100);\n    }\n}\n\nfunction drawCurveLine(_x1, _y1, _x2, _y2, _curveHeight, _dotColor, _thickness) {\n    let centerX = (_x1 + _x2) / 2;\n    let centerY = (_y1 + _y2) / 2;\n\n    let r1 = abs(_x2 - _x1) / 2;\n    let r2 = _curveHeight;\n    let ellipseRadius = 2 * PI * sqrt((r1 * r1 + r2 * r2) / 2);\n\n    let dotCount = int(ellipseRadius * dotDensity);\n\n    let fromAngle = 0;\n    let toAngle = 360;\n\n    let targetLayer = _backLayer;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = i / (dotCount - 1);\n        let nowAngle = lerp(fromAngle, toAngle, t);\n        let briAddRatio = sin(radians(lerp(0, 180, t)));\n        let strokeWidthRatio = abs(sin(radians(nowAngle + random(-60, 60))));\n\n        let x = centerX + r1 * sin(radians(nowAngle));\n        let y = centerY + r2 * -cos(radians(nowAngle));\n\n        let dotSize = noise(centerX, centerY, nowAngle * 0.1) * _thickness + 2;\n\n        if (nowAngle > 90 && nowAngle < 270)\n            targetLayer = _frontLayer;\n        else\n            targetLayer = _backLayer;\n\n        targetLayer.noStroke();\n        // stroke(100, 20, 60);\n        // strokeWeight(1 * strokeWidthRatio);\n        targetLayer.fill(_dotColor.h, _dotColor.s, _dotColor.b + briAddRatio * 20);\n        targetLayer.circle(x, y, dotSize);\n    }\n}\n\nasync function drawSegmentDots(_fromX, _fromY, _fromDist, _toX, _toY, _toDist, _curveFunc) {\n    let lineCount = lineDensity * dist(_fromX, _fromY, _toX, _toY);\n\n    for (let i = 0; i < lineCount; i++) {\n        let t = i / lineCount; // not drawing the last line\n        let curveT = _curveFunc(t);\n\n        let centerX = lerp(_fromX, _toX, t);\n        let centerY = lerp(_fromY, _toY, t);\n\n        let nowDist = lerp(_fromDist, _toDist, curveT);\n\n        let leftX = centerX - nowDist;\n        let leftY = centerY;\n\n        let rightX = centerX + nowDist;\n        let rightY = centerY;\n\n        let nowColor = new NYColor(100, 60, 40);\n\n        nowColor = _colorSet.potEdgeDotColor;\n        drawCurveLineDots(leftX, leftY, rightX, rightY, abs(leftX - rightX) * 0.24, nowColor, 1);\n        UpdateLayers();\n        await sleep(1);\n    }\n}\n\nfunction drawCurveLineDots(_x1, _y1, _x2, _y2, _curveHeight, _dotColor, _thickness) {\n    let centerX = (_x1 + _x2) / 2;\n    let centerY = (_y1 + _y2) / 2;\n\n    let r1 = abs(_x2 - _x1) / 2;\n    let r2 = _curveHeight;\n    let ellipseRadius = 2 * PI * sqrt((r1 * r1 + r2 * r2) / 2);\n\n    let dotCount = 100;\n\n    let fromAngle = 90;\n    let toAngle = 270;\n\n    let targetLayer = _frontLayer;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = 1 - random(random(random()));\n\n        let nowAngle = lerp(fromAngle, toAngle, t);\n\n        let x = centerX + r1 * sin(radians(nowAngle));\n        let y = centerY + r2 * -cos(radians(nowAngle));\n\n        let dotSize = noise(centerX, centerY, nowAngle * 0.1) * _thickness + 1;\n\n        targetLayer.noStroke();\n        // stroke(100, 20, 60);\n        // strokeWeight(1 * strokeWidthRatio);\n        targetLayer.fill(_dotColor.h, _dotColor.s, _dotColor.b);\n        targetLayer.circle(x, y, dotSize);\n    }\n}\n\nfunction drawStick(_x, _y, _startDir, _thickness, _length) {\n    let lineCount = lineDensity * _length;;\n    let stepDistance = 1.0 / (lineDensity);\n\n    let nowX = _x;\n    let nowY = _y;\n    let nowAngle = _startDir;\n    let baseAngle = _startDir;\n\n    let noiseZ = random(-1000000, 1000000);\n\n    for (let i = 0; i < lineCount; i++) {\n        circle(nowX, nowY, 12);\n\n        strokeWeight(1);\n        stroke(0, 0, 10);\n        fill(0, 0, random(30, 60));\n\n        nowAngle = _startDir + noise(nowX * 0.06, nowY * 0.06, noiseZ) * 60 - 30;\n        nowX += sin(radians(nowAngle)) * stepDistance;\n        nowY -= cos(radians(nowAngle)) * stepDistance;\n\n    }\n\n}\n\n\nasync function drawStick(_stickObj) {\n\n    let hasFlower = random() < 0.5;\n\n    for (let i = 0; i < _stickObj.nodes.length; i++) {\n        let nodeData = _stickObj.nodes[i];\n        // _midLayer.strokeWeight(3);\n        // _midLayer.stroke(0, 0, 20);\n        // _midLayer.line(nodeData.x1, nodeData.y1, nodeData.x2, nodeData.y2);\n        _midLayer.noStroke();\n        _midLayer.fill(_colorSet.stickColor.h, _colorSet.stickColor.s, _colorSet.stickColor.b);\n\n        let nowThickness = 3;\n\n        if (nodeData.nodeDepth <= 2) {\n            nowThickness = 2;\n        }\n        drawStickBranch(nodeData.x1, nodeData.y1, nodeData.x2, nodeData.y2, nowThickness);\n\n        if (nodeData.nodeDepth <= 3 && hasFlower)\n            drawDottedFlowers(nodeData);\n\n        UpdateLayers();\n        await sleep(100);\n    }\n}\n\nfunction drawStickBranch(_x1, _y1, _x2, _y2, _thickness) {\n    let dotCount = dist(_x1, _y1, _x2, _y2) * stickDotDensity;\n\n    for (let i = 0; i < dotCount; i++) {\n        let t = i / (dotCount - 1);\n        let nowX = lerp(_x1, _x2, t);\n        let nowY = lerp(_y1, _y2, t);\n\n        let normalAngle = getAngle(_x1, _y1, _x2, _y2) + 90;\n\n        nowX += sin(radians(normalAngle)) * noise(nowX * 0.1, nowY * 0.1, 666.0) * _thickness;\n        nowY -= cos(radians(normalAngle)) * noise(nowX * 0.1, nowY * 0.1, 999.0) * _thickness;\n\n        let dotSize = noise(nowX * 0.6, nowY * 0.6) * _thickness + _thickness * 0.5;\n        _midLayer.circle(nowX, nowY, dotSize);\n    }\n}\n\nfunction drawDottedFlowers(_node) {\n    let flowerDotCount = int(random(0, 6));\n\n    for (let i = 0; i < flowerDotCount; i++) {\n        let xPos = lerp(_node.x1, _node.x2, random());\n        let yPos = lerp(_node.y1, _node.y2, random());\n\n        xPos += random() * 60 - 30;\n        yPos += random() * 60 - 30;\n\n        let dotSize = random(0.1, 6);\n\n        _midLayer.noStroke();\n        _midLayer.fill(_colorSet.flowerColor.h, _colorSet.flowerColor.s, _colorSet.flowerColor.b);\n        _midLayer.circle(xPos, yPos, dotSize);\n    }\n}",
         "children": [],
         "fileType": "file",
         "_id": "660bee4ce31672001a5cc048",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": true,
         "id": "660bee4ce31672001a5cc048"
       },
@@ -1763,8 +1763,8 @@
         "children": [],
         "fileType": "file",
         "_id": "660bee4cc6d43d001aebae44",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bee4cc6d43d001aebae44"
       },
@@ -1774,8 +1774,8 @@
         "children": [],
         "fileType": "file",
         "_id": "660bee4cce7a64001ae9371f",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bee4cce7a64001ae9371f"
       },
@@ -1785,8 +1785,8 @@
         "children": [],
         "fileType": "file",
         "_id": "660bee4cce7a64001ae93724",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bee4cce7a64001ae93724"
       },
@@ -1796,8 +1796,8 @@
         "children": [],
         "fileType": "file",
         "_id": "660bee63c6d43d001aebafa1",
-        "updatedAt": "2024-04-09T13:14:16.927Z",
-        "createdAt": "2024-04-09T13:14:16.927Z",
+        "updatedAt": "2024-04-18T03:26:51.416Z",
+        "createdAt": "2024-04-18T03:26:51.416Z",
         "isSelectedFile": false,
         "id": "660bee63c6d43d001aebafa1"
       }
@@ -1887,6 +1887,340 @@
     ],
     "createdAt": "2024-04-09T09:39:53.439Z",
     "id": "Ym5U14iSN"
+  },
+  {
+    "name": "ims04-Jiaz",
+    "_id": "iBJS9wAbf",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "6627d4a5a702001186020b64",
+          "6627d4a5a702001186020b65",
+          "6627d4a5a702001186020b66",
+          "6627d4a5a702001186020b67",
+          "6627d4a5a702001186020b68",
+          "6627d4a5a702001186020b69"
+        ],
+        "fileType": "folder",
+        "_id": "6627d4a5a702001186020b63",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": false,
+        "id": "6627d4a5a702001186020b63"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627d4a5a702001186020b68",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": false,
+        "id": "6627d4a5a702001186020b68"
+      },
+      {
+        "name": "a_my_init.js",
+        "content": "//\nfunction my_init() {\n  // updated to verify change on mobile\n  my.version = '?v=63';\n  my.isRemote = 1;\n  my.videoFlag = 1;\n  // show detailed log\n  my.logLoud = 0;\n\n  // Aspect ratio of video capture on mobile device\n  my.vwidth = 480 / 2;\n  my.vheight = 640 / 2;\n  my.fireb_config = 'jht9629';\n  // my.fireb_config = 'jht1493';\n  // my.fireb_config = 'jhtitp';\n\n  my.dbase_rootPath = 'm0-@r-@w-';\n  my.mo_app = 'mo-photo';\n  my.roomName = 'room1';\n\n  // my.nameDevice = '';\n\n  if (my.isRemote) {\n    my.width = my.vwidth;\n    my.height = my.vheight;\n  } else {\n    my.width = windowWidth;\n    my.height = windowHeight;\n  }\n\n  my.colorGold = [187, 165, 61];\n  my.colors = [[255, 0, 0], [0, 255, 0], my.colorGold];\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627d4a5a702001186020b64",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": false,
+        "id": "6627d4a5a702001186020b64"
+      },
+      {
+        "name": "a_sketch.js",
+        "content": "// https://editor.p5js.org/jiaying0822/sketches/iBJS9wAbf\n// ims04-Jiaz\n\n// https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps\n// p5moExamples photo booth 70\n\n// Capture canvas pixels to cloud as image jpg or png\n\nlet my = {};\n\nfunction setup() {\n  my_init();\n\n  // set group to share cloud data\n  my.group = 'group1';\n\n  my.photo_index = 0;\n  my.photo_max = 4;\n  my.photo_list = [];\n  my.slit_scan = 0;\n\n  // my.imageQuality = 1;\n  my.imageQuality = 0.1;\n  my.imageExt = '.jpg';\n  // my.imageExt = '.png';\n  my.thumbWidth = my.vwidth / 2;\n\n  // Lowest pixel density for small uploads\n  pixelDensity(1);\n\n  my.canvas = createCanvas(my.width, my.height);\n  my.canvas.mouseReleased(canvas_mouseReleased);\n  my.canvas.touchEnded(canvas_mouseReleased);\n\n  ui_init();\n\n  video_create();\n\n  dbase_app_init({ completed: startup_completed });\n\n  // for moving circle or video scan line\n  my.x = 0;\n  my.y = my.height / 2;\n  my.xstep = 1;\n  my.radius = int(my.width / 10);\n}\n\nfunction startup_completed() {\n  //\n  // dbase_devices_observe({ observed_key, observed_item, all: 1 });\n  // dbase_app_observe({ observed_item });\n  dbase_group_observe({ observed_key, observed_item });\n\n  function observed_key(key, device) {\n    // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);\n    // console.log('observed_key key', key, 'device.photo_index', device && device.photo_index);\n  }\n\n  function observed_item(device) {\n    // console.log('observed_item device.photo_index', device.photo_index);\n    // console.log('observed_item device.photo_list', device.photo_list);\n    if (device.photo_list != undefined) {\n      my.photo_list = device.photo_list;\n    }\n    if (device.photo_index != undefined) {\n      my.photo_index = device.photo_index;\n    }\n    show_action();\n  }\n}\n\nfunction toggleFullScreen() {\n    let fs = fullscreen();\n    fullscreen(!fs); // Toggle the state\n    adjustVideoResolution();\n}\n\nfunction adjustVideoResolution() {\n    if (fullscreen()) {\n        // Set larger dimensions when in fullscreen\n        my.width = displayWidth;\n        my.height = displayHeight;\n    } else {\n        // Set smaller dimensions when not in fullscreen\n        my.width = my.vwidth;\n        my.height = my.vheight;\n    }\n    resizeCanvas(my.width, my.height);\n    // Optionally reset video dimensions here if necessary\n}\n\nfunction draw() {\n  draw_frame();\n  draw_number(my.photo_index + 1);\n}\n\nfunction draw_frame() {\n  if (my.videoFlag && !video_ready()) return;\n\n  if (my.videoFlag) {\n    // faster to get entire video frame as an image\n    my.videoImg = my.video.get();\n  }\n  if (!my.videoImg) {\n    return;\n  }\n  if (my.slit_scan) {\n    draw_scan();\n  } else {\n    draw_video();\n  }\n  my.x = (my.x + my.xstep) % my.width;\n\n  let str = my.photo_list.length + ' ' + my.photo_index;\n  my.photo_count_span.html(str);\n}\n\nfunction draw_scan() {\n  // my.videoImg.loadPixels();\n  let w = my.videoImg.width;\n  let h = my.videoImg.height;\n  copy(my.videoImg, w / 2, 0, 1, h, my.x, 0, 1, h);\n}\n\nfunction draw_video() {\n  // background(0);\n  image(my.videoImg, 0, 0);\n  // Draw circle on video\n  noStroke();\n  let index = my.photo_index + 1;\n  fill(my.colors[index % my.colors.length]);\n  circle(my.x, my.y, my.radius);\n}\n\nfunction draw_number(n) {\n  // Convert number to string\n  let str = n + '';\n  let x = 10;\n  let y = my.height;\n  textSize(50);\n  // Draw black rect background\n  let a = textAscent();\n  let d = textDescent();\n  let h = a + d;\n  let w = textWidth(str);\n  fill(0);\n  rect(x, y - h, w, h);\n  // Draw white text\n  fill(255);\n  // x  y bottom-left corner.\n  text(str, x, y - d);\n}\n\nfunction canvas_mouseReleased() {\n  // console.log('canvas_mouseReleased');\n  track_xy();\n}\n\nfunction track_xy() {\n  let x = mouseX;\n  let y = mouseY;\n}\n\nfunction mouseDragged() {\n  // console.log('mouseDragged');\n  // required to prevent touch drag moving canvas on mobile\n  let onCanvas = mouseX >= 0 && mouseX < width && mouseY >= 0 && mouseY < height;\n  if (onCanvas) {\n    track_xy();\n  }\n  // return my.scrollFlag ? true : !onCanvas;\n  return !onCanvas;\n}\n\nfunction windowResized() {\n  // console.log('windowResized windowHeight', windowHeight, 'windowWidth', windowWidth);\n  // my.isPortrait = windowHeight > windowWidth;\n  if (my.isRemote) {\n    return;\n  }\n  resizeCanvas(windowWidth, windowHeight);\n  // console.log('windowResized width', width, 'height', height);\n}\n\n// https://editor.p5js.org/jht9629-nyu/sketches/twgS6eWRZ\n// pixel-grid\n\n// https://editor.p5js.org/jht9629-nyu/sketches/7Wjlo3pPU\n// mo-pix-chip-grid jht9629 fireb_firebase.js\n\n// https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp\n// p5moExamples pixel-grid 47\n\n// [x] Correct display of images - must hit show button\n// [x] Add --> Take, keep array of n images and upate\n// [x] photo_index\n\n// [x] my.photo_list - show only last n\n//    [ { name: \"\", index: n }, ... ]\n\n// [x] preserve image show order\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627d4a5a702001186020b65",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": true,
+        "id": "6627d4a5a702001186020b65"
+      },
+      {
+        "name": "photo.js",
+        "content": "//\n\nfunction photo_name(index) {\n  return index.toString().padStart(3, '0') + my.imageExt;\n}\n\nfunction photo_list_entry(index) {\n  let name = photo_name(index);\n  let uid = my.uid;\n  return { name, index, uid };\n}\n\nfunction photo_path_entry(entry) {\n  return entry.uid + '/' + entry.name;\n}\n\nasync function photo_list_add(entry) {\n  my.photo_list.push(entry);\n  if (my.photo_list.length > my.photo_max) {\n    await photo_list_trim();\n  }\n\n  // Change to photo_list send to cloud\n  dbase_group_update({ photo_list: my.photo_list });\n}\n\nasync function photo_list_trim() {\n  //\n  // remove the first entry in photo_list\n  //\n  let first = my.photo_list.shift();\n  await photo_list_remove_entry(first);\n}\n\nasync function photo_list_remove_entry(entry) {\n  // console.log('photo_list_remove_entry entry', entry);\n\n  let path = photo_path_entry(entry);\n  try {\n    await fstorage_remove({ path });\n    remove_img_index(entry.index);\n  } catch (err) {\n    console.log('show_action err', err);\n  }\n}\n\nfunction remove_img_index(index) {\n  // console.log('remove_img_index index', index);\n  let id = 'id_img_' + index;\n  let img = select('#' + id);\n  // console.log('remove_img_index img', img);\n  if (img) {\n    img.remove();\n  }\n}\n\nasync function show_action() {\n  //\n  // console.log('show_action my.photo_list', my.photo_list);\n  for (let entry of my.photo_list) {\n    let path = photo_path_entry(entry);\n    try {\n      let url = await fstorage_download_url({ path });\n      url_result(url, entry.index);\n    } catch (err) {\n      console.log('show_action err', err);\n    }\n  }\n  function url_result(url, index) {\n    // console.log('url_result index', index, 'url', url);\n    let img = find_img(index);\n    img.elt.src = url;\n  }\n}\n\n// Create image element for an index\n//  or return if already present\n//\nfunction find_img(index) {\n  let id = 'id_img_' + index;\n  let img = select('#' + id);\n  if (!img) {\n    // console.log('show_action id', id);\n    img = createImg('', 'image');\n    img.id(id);\n    // console.log('show_action createImg', img);\n    // my.gallery_div.child(img);\n\n    // Add image as first child to see most recent first\n    my.gallery_div.elt.prepend(img.elt);\n\n    let iwidth = my.thumbWidth;\n    img.style('width: ' + iwidth + 'px;');\n  }\n  return img;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627d4a5a702001186020b67",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": false,
+        "id": "6627d4a5a702001186020b67"
+      },
+      {
+        "name": "ui_init.js",
+        "content": "//\nfunction ui_init() {\n  //\n  my.effectBtn = ui_createButton('Effect');\n  my.effectBtn.mousePressed(effect_action);\n\n  my.takeBtn = ui_createButton('Take');\n  my.takeBtn.mousePressed(take_action);\n\n  my.removeBtn = ui_createButton('Remove');\n  my.removeBtn.mousePressed(remove_action);\n\n  my.showBtn = ui_createButton('Show');\n  my.showBtn.mousePressed(show_action);\n  \n  my.fullscreenBtn = ui_createButton('Fullscreen');\n  my.fullscreenBtn.mousePressed(toggleFullScreen);\n\n  my.photo_count_span = createSpan('' + my.photo_list.length);\n\n  my.gallery_div = ui_div_empty('igallery');\n}\n\nfunction effect_action() {\n  my.slit_scan = !my.slit_scan;\n}\n\nasync function take_action() {\n  // console.log('take_action');\n\n  let entry = photo_list_entry(my.photo_index + 1);\n  let path = photo_path_entry(entry);\n\n  let layer = my.canvas;\n  let imageQuality = my.imageQuality;\n  try {\n    await fstorage_upload({ path, layer, imageQuality });\n\n    await photo_list_add(entry);\n\n    dbase_group_update({ photo_index: dbase_increment(1) });\n    //\n  } catch (err) {\n    console.log('take_action err', err);\n  }\n}\n\nasync function remove_action() {\n  // console.log('remove_action photo_count', my.photo_list.length);\n  if (my.photo_list.length < 1) {\n    // No more images in the cloud\n    //  zero out photo_index\n    dbase_group_update({ photo_index: 0 });\n    return;\n  }\n  //\n  // remove the last entry in photo_list\n  //\n  let last = my.photo_list.pop();\n  await photo_list_remove_entry(last);\n\n  // Update photo_list in the cloud\n  dbase_group_update({ photo_list: my.photo_list });\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627d4a5a702001186020b69",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": false,
+        "id": "6627d4a5a702001186020b69"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js\"></script>\n    <!-- <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js\"></script> -->\n\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://molab-itp.github.io/p5moRelease/lib/66/style.css\" />\n    <!-- <link rel=\"stylesheet\" type=\"text/css\" href=\"../../../p5moLibrary/src/lib/style.css?v=63\" /> -->\n\n    <style></style>\n  </head>\n  <body>\n    <main></main>\n\n    <script type=\"module\" src=\"https://molab-itp.github.io/p5moRelease/lib/70/a_lib.js\"></script>\n    <!-- <script type=\"module\" src=\"../../p5moLibrary/src/lib/a_lib.js\"></script> -->\n\n    <script src=\"a_my_init.js\"></script>\n    <script src=\"ui_init.js\"></script>\n    <script src=\"photo.js\"></script>\n    <script src=\"a_sketch.js\"></script>\n    <!-- ?v=63 included to force into the cache -->\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627d4a5a702001186020b66",
+        "updatedAt": "2024-04-23T15:53:26.348Z",
+        "createdAt": "2024-04-23T15:53:26.348Z",
+        "isSelectedFile": false,
+        "id": "6627d4a5a702001186020b66"
+      }
+    ],
+    "createdAt": "2024-04-23T15:32:35.111Z",
+    "updatedAt": "2024-04-23T15:53:26.348Z",
+    "id": "iBJS9wAbf"
+  },
+  {
+    "name": "ims05-Jiaz",
+    "_id": "ONt2F3M9G",
+    "updatedAt": "2024-04-29T17:39:24.012Z",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "6627f0060e6156b8bfc0b5d5",
+          "6627f0060e6156b8bfc0b5d4",
+          "6627f0060e6156b8bfc0b5d6",
+          "6627f05d761d42001967cc06"
+        ],
+        "fileType": "folder",
+        "_id": "6627f0060e6156b8bfc0b5d7",
+        "createdAt": "2024-04-29T17:39:24.012Z",
+        "updatedAt": "2024-04-29T17:39:24.012Z",
+        "isSelectedFile": false,
+        "id": "6627f0060e6156b8bfc0b5d7"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://editor.p5js.org/jiaying0822/sketches/ONt2F3M9G\n// ims05-Jiaz\n\n// trying to create a scratch-off effect for images \n\nlet img; // Variable to store the image\nlet topLayer; // layer that goes on top of the image\nlet hasDragged = false;\nlet hidden = false;\nlet displayText = \"\"; // Variable to store journal text\nlet showInstructions = false; \n\n\nfunction preload() {\n  img = loadImage('testImage.jpg'); // Load your image here\n}\n\nfunction setup() {\n  createCanvas(400, 540);\n  background(0);\n  \n  topLayer = createGraphics(width, height); \n  topLayer.background(0);\n\n  // adjust the stroke, more of a brush effect\n  topLayer.strokeWeight(10); // how much we are scratching off \n  topLayer.blendMode(REMOVE); // tells p5 we are removing the color\n  \n//** for the actual final, the entry is going to appear before this part\n  \n  // Create text area for journal entry\n  entry = createElement('textarea', 'The story behind this image...');\n  entry.value('The story behind this image...')\n  entry.style('font-family', 'Gaegu');\n  entry.style('font-size', '18px');\n  entry.style('color', 'white');\n  entry.style('background-color', '#333'); \n  entry.style('width', '390px');\n  entry.style('border-radius', '5px'); \n  entry.style('height', '50px');\n  entry.style('resize', 'none');\n  entry.style('padding', '5px');\n  entry.position(0, height + 5);\n  \n  // Create button to submit entry\n  btn = createButton('submit');\n  btn.position(entry.position().x + 343, entry.position().y + 68);\n  btn.style('font-family','Gaegu');\n  btn.style('font-size', '16px');\n  \n  // Add an event listener to the button\n  btn.mousePressed(hideElements);\n}\n\nfunction draw() {\n  if (hasDragged == true) {\n    image(img, 0, 0, width, height);\n    image(topLayer,0, 0); // draw the layer onto the screen\n  }\n  if (hidden) {\n    textFont('Gaegu');\n    fill(255);\n    noStroke();\n    textSize(18);\n    text(displayText, 10, height/2, 380, height); // Ensure text fits within canvas\n  }\n   if (showInstructions) {\n    fill(255);\n    noStroke();\n    textSize(18);\n    textFont('Gaegu');\n    text(\"Hold & drag mouse to reveal the memory...\", 10, 30);\n  }\n  \n} \n\nfunction mousePressed(){\n  if (mouseX < 400 && mouseY < 540 && hidden == true) {\n    showInstructions = true; // Show the instructions when mouse is pressed\n    hidden = false;\n    // Create button to save scratchoff\n    sve = createButton('save');\n    sve.position(355,545);\n    sve.style('font-family','Gaegu');\n    sve.style('font-size', '16px');\n\n    // Add an event listener to the button\n    sve.mousePressed(saveScratchOff);\n  }\n}\n\nfunction mouseDragged() {\n  setTimeout(hideInstructions, 10000); // instructions should disappear after 10 seconds after user starts drags\n\n  // Set hasDragged to true as the user drags\n  hasDragged = true;\n  // reveal the image beneath the top layer\n  topLayer.line(pmouseX,pmouseY,mouseX,mouseY);\n}\n\nfunction hideElements() {\n  hidden = true;\n  showInstructions = false; // Stop showing the instructions\n  displayText = entry.value();\n  entry.hide();  // Hide the textarea\n  btn.hide(); // Hide the button\n}\n\nfunction hideInstructions(){\n  showInstructions = false;\n}\n\nfunction saveScratchOff(){\n  save('ScratchOff.png'); \n}\n\n// if the user clicks on the arrow that flips the card/reveals the journal they wrote for this journal and then flip back, the image will be colored, arrow will appear after they dragged and like 5 seconds maybe\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627f0060e6156b8bfc0b5d4",
+        "isSelectedFile": true,
+        "createdAt": "2024-04-29T17:39:24.012Z",
+        "updatedAt": "2024-04-29T17:39:24.012Z",
+        "id": "6627f0060e6156b8bfc0b5d4"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js\"></script>\n    <link href=\"https://fonts.googleapis.com/css2?family=Gaegu&display=swap\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627f0060e6156b8bfc0b5d5",
+        "createdAt": "2024-04-29T17:39:24.012Z",
+        "updatedAt": "2024-04-29T17:39:24.012Z",
+        "isSelectedFile": false,
+        "id": "6627f0060e6156b8bfc0b5d5"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627f0060e6156b8bfc0b5d6",
+        "createdAt": "2024-04-29T17:39:24.012Z",
+        "updatedAt": "2024-04-29T17:39:24.012Z",
+        "isSelectedFile": false,
+        "id": "6627f0060e6156b8bfc0b5d6"
+      },
+      {
+        "name": "testImage.jpg",
+        "content": "",
+        "children": [],
+        "fileType": "file",
+        "_id": "6627f05d761d42001967cc06",
+        "url": "https://assets.editor.p5js.org/6331e502cb37e2001a54fa9b/746c361f-82e3-42cc-ab90-e8250ca14826.JPG",
+        "updatedAt": "2024-04-29T17:39:24.012Z",
+        "createdAt": "2024-04-29T17:39:24.012Z",
+        "isSelectedFile": false,
+        "id": "6627f05d761d42001967cc06"
+      }
+    ],
+    "createdAt": "2024-04-23T17:29:36.316Z",
+    "id": "ONt2F3M9G"
+  },
+  {
+    "name": "ims05-Jiaz",
+    "_id": "yTBe3nOh0",
+    "updatedAt": "2024-04-23T11:54:02.082Z",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "66279e246f288252ccf62bac",
+          "66279e246f288252ccf62bab",
+          "66279e246f288252ccf62bad"
+        ],
+        "fileType": "folder",
+        "_id": "66279e246f288252ccf62bae",
+        "createdAt": "2024-04-23T11:54:02.082Z",
+        "updatedAt": "2024-04-23T11:54:02.082Z",
+        "isSelectedFile": false,
+        "id": "66279e246f288252ccf62bae"
+      },
+      {
+        "name": "sketch.js",
+        "content": "//https://editor.p5js.org/jiaying0822/sketches/yTBe3nOh0\n//ims05-Jiaz\n\nlet video;\n\nfunction setup() {\n    createCanvas(640, 480);\n    // Create a video capture object\n    video = createCapture(VIDEO);\n    video.size(width, height); // set the size to the canvas size\n\n    // Optional: hide the default video element to only show the canvas\n    video.hide();\n}\n\nfunction draw() {\n    background(0);\n    \n    // Display the video\n    image(video, 0, 0, width, height);\n}",
+        "children": [],
+        "fileType": "file",
+        "_id": "66279e246f288252ccf62bab",
+        "isSelectedFile": true,
+        "createdAt": "2024-04-23T11:54:02.082Z",
+        "updatedAt": "2024-04-23T11:54:02.082Z",
+        "id": "66279e246f288252ccf62bab"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66279e246f288252ccf62bac",
+        "createdAt": "2024-04-23T11:54:02.082Z",
+        "updatedAt": "2024-04-23T11:54:02.082Z",
+        "isSelectedFile": false,
+        "id": "66279e246f288252ccf62bac"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66279e246f288252ccf62bad",
+        "createdAt": "2024-04-23T11:54:02.082Z",
+        "updatedAt": "2024-04-23T11:54:02.082Z",
+        "isSelectedFile": false,
+        "id": "66279e246f288252ccf62bad"
+      }
+    ],
+    "createdAt": "2024-04-23T11:40:29.667Z",
+    "id": "yTBe3nOh0"
+  },
+  {
+    "name": "ims06-Jiaz",
+    "_id": "D9CuGjBf64",
+    "updatedAt": "2024-04-30T12:23:26.150Z",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "662fdb7fc380ee4389d7afc3",
+          "662fdb7fc380ee4389d7afc2",
+          "662fdb7fc380ee4389d7afc4"
+        ],
+        "fileType": "folder",
+        "_id": "662fdb7fc380ee4389d7afc5",
+        "createdAt": "2024-04-30T12:23:26.150Z",
+        "updatedAt": "2024-04-30T12:23:26.150Z",
+        "isSelectedFile": false,
+        "id": "662fdb7fc380ee4389d7afc5"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://editor.p5js.org/jiaying0822/sketchescrejBf64\n// ims06-Jiaz\n\nlet capture;\nlet newPic;\nlet images = [];\n\nfunction setup() {\n  textFont(\"Gaegu\");\n  createCanvas(windowWidth, windowHeight);\n\n  capture = createCapture(VIDEO);\n  capture.size(280, 380);\n  capture.hide();\n\n  // Create button to take picture\n  snap = createButton(\"snap 📸\");\n  snap.position(10, 510);\n  snap.style(\"font-family\", \"Gaegu\");\n  snap.style(\"font-size\", \"16px\");\n  snap.mousePressed(takePic);\n\n  // Create button to shuffle images\n  shuff = createButton(\"shuffle 🔀\");\n  shuff.position(85, 510);\n  shuff.style(\"font-family\", \"Gaegu\");\n  shuff.style(\"font-size\", \"16px\");\n  shuff.mousePressed(shufflePics);\n\n  // Create button to delete picture\n  del = createButton(\"delete 🗑️\");\n  del.position(177, 510);\n  del.style(\"font-family\", \"Gaegu\");\n  del.style(\"font-size\", \"16px\");\n  del.mousePressed(deletePic);\n\n  // Create text area for journal entry\n  entry = createElement(\"textarea\", \"The story behind this image...\");\n  entry.style(\"font-family\", \"Gaegu\");\n  entry.style(\"font-size\", \"18px\");\n  entry.style(\"background-color\", \"white\");\n  entry.style(\"width\", \"390px\");\n  entry.style(\"border-radius\", \"5px\");\n  entry.style(\"height\", \"90px\");\n  entry.style(\"resize\", \"none\");\n  entry.style(\"padding\", \"5px\");\n  entry.position(325, 10);\n\n  // Create button to submit entry and save to image\n  btn = createButton(\"submit\");\n  btn.position(668, 112);\n  btn.style(\"font-family\", \"Gaegu\");\n  btn.style(\"font-size\", \"16px\");\n  btn.mousePressed(() => {\n    if (images.length > 0) {\n      images[images.length - 1].text = entry.value();\n      entry.value(\"\");\n    }\n  });\n}\n\nfunction draw() {\n  background(\"white\");\n\n  // UI background for image display area\n  fill(\"#feeb75\");\n  noStroke();\n  rect(325, 145, 400, 30);\n  rect(10, 10, 304, 490, 5, 5, 5, 5);\n\n  image(capture, 27, 45, 270, 380);\n\n  let offsetX = 325,\n    offsetY = 185;\n  let imgWidth = 180,\n    imgHeight = 253;\n  let margin = 10;\n\n  // Iterate over images array to display each image or its text\n  for (let i = 0; i < images.length; i++) {\n    let x = offsetX + (i % 5) * (imgWidth + margin);\n    let y = offsetY + Math.floor(i / 5) * (imgHeight + margin);\n    if (!images[i].flipped) {\n      image(images[i].img, x, y, imgWidth, imgHeight);\n    } else {\n      fill(\"white\");\n      strokeWeight(0.5);\n      stroke(\"black\");\n      rect(x, y, imgWidth, imgHeight);\n      fill(0);\n      textSize(16);\n      text(images[i].text, x + 5, y + 20, imgWidth - 10, imgHeight - 20);\n    }\n  }\n  fill(0);\n  textSize(18);\n  text(`Click on each image to revisit your memories :)`, 330, 165);\n}\n\nfunction takePic() {\n  if (images.length < 10) {\n    // Only allow up to 10 images\n    let img = capture.get();\n    images.push({ img: img, text: \"\", flipped: false });\n  }\n}\n\nlet shuffleEffect = false;\n\nfunction shufflePics() {\n  shuffleEffect = true;\n  images.sort(() => Math.random() - 0.5);\n}\nfunction deletePic() {\n  if (images.length > 0) {\n    let i = images.length - 1;\n    let offsetX = 325,\n      offsetY = 185;\n    let imgWidth = 180,\n      imgHeight = 253;\n    let margin = 10;\n    let x = offsetX + (i % 5) * (imgWidth + margin);\n    let y = offsetY + Math.floor(i / 5) * (imgHeight + margin);\n\n    fill(\"white\");\n    noStroke();\n    rect(x, y, imgWidth, imgHeight + 40);\n\n    images.pop();\n  }\n}\n\nfunction mousePressed() {\n  let offsetX = 325,\n    offsetY = 185;\n  let imgWidth = 180,\n    imgHeight = 253;\n  let margin = 10;\n\n  for (let i = 0; i < images.length; i++) {\n    let x = offsetX + (i % 5) * (imgWidth + margin);\n    let y = offsetY + Math.floor(i / 5) * (imgHeight + margin);\n\n    if (\n      mouseX > x &&\n      mouseX < x + imgWidth &&\n      mouseY > y &&\n      mouseY < y + imgHeight\n    ) {\n      images[i].flipped = !images[i].flipped; // Toggle the flipped state\n      break;\n    }\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "662fdb7fc380ee4389d7afc2",
+        "isSelectedFile": true,
+        "createdAt": "2024-04-30T12:23:26.150Z",
+        "updatedAt": "2024-04-30T12:23:26.150Z",
+        "id": "662fdb7fc380ee4389d7afc2"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js\"></script>\n<!--     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js\"></script> -->\n    <link href=\"https://fonts.googleapis.com/css2?family=Gaegu&display=swap\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "662fdb7fc380ee4389d7afc3",
+        "createdAt": "2024-04-30T12:23:26.150Z",
+        "updatedAt": "2024-04-30T12:23:26.150Z",
+        "isSelectedFile": false,
+        "id": "662fdb7fc380ee4389d7afc3"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "662fdb7fc380ee4389d7afc4",
+        "createdAt": "2024-04-30T12:23:26.150Z",
+        "updatedAt": "2024-04-30T12:23:26.150Z",
+        "isSelectedFile": false,
+        "id": "662fdb7fc380ee4389d7afc4"
+      }
+    ],
+    "createdAt": "2024-04-29T17:40:20.027Z",
+    "id": "D9CuGjBf64"
+  },
+  {
+    "name": "ims06-Jiaz copy",
+    "_id": "V9OrPafmV",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "66307a36929da10062d5440e",
+          "66307a36929da10062d5440f",
+          "66307a36929da10062d54410"
+        ],
+        "fileType": "folder",
+        "_id": "66307a36929da10062d5440d",
+        "createdAt": "2024-04-30T05:28:29.446Z",
+        "updatedAt": "2024-04-30T05:28:29.446Z",
+        "isSelectedFile": false,
+        "id": "66307a36929da10062d5440d"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://editor.p5js.org/jiaying0822/sketchescrejBf64\n// ims06-Jiaz\n\nlet capture;\nlet newPic; \nlet images = []; // array to store the captured images\n\nfunction setup() {\n  textFont('Gaegu');\n  createCanvas(windowWidth, windowHeight);  // Set the size of the canvas\n  capture = createCapture(VIDEO);  // Start capturing video\n  capture.size(280, 380);  // Set the size of the capture\n  capture.hide();  // Hide the HTML element to use the canvas for rendering\n  \n  // Create button to take picture\n  snap = createButton('snap 📸');\n  snap.position(10, 510);\n  snap.style('font-family','Gaegu');\n  snap.style('font-size', '16px');\n  snap.mousePressed(takePic); \n  \n  // Create button to play video\n  play = createButton('play ▶️');\n  play.position(85, 510);\n  play.style('font-family', 'Gaegu');\n  play.style('font-size', '16px');\n  play.mousePressed(playVideo);\n  \n  // Create button to delete picture\n  del = createButton('delete 🗑️');\n  del.position(157, 510);\n  del.style('font-family', 'Gaegu');\n  del.style('font-size', '16px');\n  del.mousePressed(deletePic); \n  \n  // Create text area for journal entry\n  entry = createElement('textarea', 'The story behind this image...');\n  entry.style('font-family', 'Gaegu');\n  entry.style('font-size', '18px');\n  entry.style('background-color', 'white'); \n  entry.style('width', '390px');\n  entry.style('border-radius', '5px'); \n  entry.style('height', '90px');\n  entry.style('resize', 'none');\n  entry.style('padding', '5px');\n  entry.position(325, 10);\n  \n}\n\nfunction draw() {\n  background('white')\n  // Clear the specific area where the text is displayed\n  // Use the background color to fill a rectangle that covers the old text\n  fill('#feeb75');  // Use the background color\n  noStroke();\n  rect(325, 130, 400, 30);  // Adjust size to fully cover the text area\n\n  // Draw the video frame and the UI\n  rect(10, 10, 304, 490, 5, 5, 5, 5);\n  image(capture, 27, 45, 270, 380);\n\n  let offsetX = 325, offsetY = 170;  // Starting position for the first image\n  let imgWidth = 180, imgHeight = 253;  // Size of each image\n  let margin = 10;  // Margin between images\n\n  for (let i = 0; i < images.length; i++) {\n    let x = offsetX + (i % 5) * (imgWidth + margin);  // Position for each image\n    let y = offsetY + Math.floor(i / 5) * (imgHeight + margin);\n    image(images[i], x, y, imgWidth, imgHeight);\n  }\n\n  // Redraw the text\n  fill(0);  // Text color\n  textSize(18);\n  text(`Access your past memories below (${images.length}/10)`, 330, 150);\n}\n\nfunction takePic() {\n  // newPic = capture.get(); \n  if (images.length < 10) {  // Only allow up to 10 images\n    images.push(capture.get());  // Add the new image to the array\n  }\n}\n\nfunction playVideo() {\n  \n}\n\nfunction deletePic() {\n  if (images.length > 0) {\n    // Calculate the position of the last image\n    let i = images.length - 1;\n    let offsetX = 325, offsetY = 170;\n    let imgWidth = 180, imgHeight = 253;\n    let margin = 10;\n    let x = offsetX + (i % 5) * (imgWidth + margin);\n    let y = offsetY + Math.floor(i / 5) * (imgHeight + margin);\n\n    // Cover the last image with a rectangle\n    fill('white');  // Background color\n    noStroke();\n    rect(x, y, imgWidth, imgHeight);\n\n    // Remove the last image from the array\n    images.pop();\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66307a36929da10062d5440f",
+        "isSelectedFile": true,
+        "createdAt": "2024-04-30T05:28:29.446Z",
+        "updatedAt": "2024-04-30T05:28:29.446Z",
+        "id": "66307a36929da10062d5440f"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js\"></script>\n<!--     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js\"></script> -->\n    <link href=\"https://fonts.googleapis.com/css2?family=Gaegu&display=swap\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66307a36929da10062d5440e",
+        "createdAt": "2024-04-30T05:28:29.446Z",
+        "updatedAt": "2024-04-30T05:28:29.446Z",
+        "isSelectedFile": false,
+        "id": "66307a36929da10062d5440e"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "66307a36929da10062d54410",
+        "createdAt": "2024-04-30T05:28:29.446Z",
+        "updatedAt": "2024-04-30T05:28:29.446Z",
+        "isSelectedFile": false,
+        "id": "66307a36929da10062d54410"
+      }
+    ],
+    "createdAt": "2024-04-30T04:57:09.675Z",
+    "updatedAt": "2024-04-30T05:28:29.446Z",
+    "id": "V9OrPafmV"
   },
   {
     "name": "Invisible Message",
@@ -3387,6 +3721,76 @@
     ],
     "createdAt": "2022-11-16T16:07:22.738Z",
     "id": "eeiM0D0CJ"
+  },
+  {
+    "name": "WebGL test",
+    "_id": "UYO_y6cn6V",
+    "updatedAt": "2024-04-24T02:15:33.444Z",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "66286511471f0c1c5035ae61",
+          "662864c4471f0c1c5035ae5e",
+          "662864c4471f0c1c5035ae5d",
+          "662864c4471f0c1c5035ae5f"
+        ],
+        "fileType": "folder",
+        "_id": "662864c4471f0c1c5035ae60",
+        "isSelectedFile": false,
+        "createdAt": "2024-04-24T02:15:33.444Z",
+        "updatedAt": "2024-04-24T02:15:33.444Z",
+        "id": "662864c4471f0c1c5035ae60"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let img, topLayer;\nlet yRotation = 0;\nlet isFlipping = false;\nlet flipDirection = 1; // 1 for forward, -1 for backward\n\nfunction setup() {\n  createCanvas(400, 540, WEBGL);\n  img = loadImage('himawari.png'); // Ensure you load your image here\n  topLayer = createGraphics(width, height);\n  topLayer.background(0);\n  topLayer.fill(255); // Example content on topLayer\n  topLayer.text('Secret Text', 50, 50);\n  angleMode(DEGREES); // Working with degrees is easier for rotations\n  \n  // Your existing setup code\n  let btn = createButton('submit');\n  btn.mousePressed(() => {\n    if (!isFlipping && yRotation === 0) { // Only allow flip if not currently flipping and at initial position\n      flipDirection = 1;\n      isFlipping = true;\n    }\n  });\n}\n\nfunction draw() {\n  background(255);\n  rotateY(yRotation);\n\n  if (isFlipping) {\n    yRotation += 5 * flipDirection;\n    if (yRotation >= 180 || yRotation <= 0) {\n      yRotation = constrain(yRotation, 0, 180);\n      isFlipping = false; // Stop flipping when fully rotated to one side or the other\n    }\n  }\n\n  // Based on the angle, display the correct side\n  if (yRotation > 90) {\n    texture(topLayer); // Show topLayer if mostly flipped\n  } else {\n    texture(img); // Show image if not flipped or flipped back\n  }\n  noStroke();\n  plane(width, height); // Use plane to cover the canvas\n}\n\nfunction mousePressed() {\n  // Flip back if clicked on the canvas and it's fully flipped\n  if (!isFlipping && yRotation === 180) {\n    flipDirection = -1;\n    isFlipping = true;\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "662864c4471f0c1c5035ae5d",
+        "isSelectedFile": true,
+        "createdAt": "2024-04-24T02:15:33.444Z",
+        "updatedAt": "2024-04-24T02:15:33.444Z",
+        "id": "662864c4471f0c1c5035ae5d"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "662864c4471f0c1c5035ae5e",
+        "isSelectedFile": false,
+        "createdAt": "2024-04-24T02:15:33.444Z",
+        "updatedAt": "2024-04-24T02:15:33.444Z",
+        "id": "662864c4471f0c1c5035ae5e"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "662864c4471f0c1c5035ae5f",
+        "isSelectedFile": false,
+        "createdAt": "2024-04-24T02:15:33.444Z",
+        "updatedAt": "2024-04-24T02:15:33.444Z",
+        "id": "662864c4471f0c1c5035ae5f"
+      },
+      {
+        "name": "himawari.png",
+        "content": "",
+        "children": [],
+        "fileType": "file",
+        "_id": "66286511471f0c1c5035ae61",
+        "url": "https://assets.editor.p5js.org/6331e502cb37e2001a54fa9b/521a7919-8f44-418a-832f-4ebc2880e0aa.png",
+        "isSelectedFile": false,
+        "createdAt": "2024-04-24T02:15:33.444Z",
+        "updatedAt": "2024-04-24T02:15:33.444Z",
+        "id": "66286511471f0c1c5035ae61"
+      }
+    ],
+    "createdAt": "2024-04-24T01:52:13.982Z",
+    "id": "UYO_y6cn6V"
   },
   {
     "name": "Winter Scavenger Hunt",
